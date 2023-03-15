@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f99739ac2e0144ebe0c9143085cbda, type: 3}
+  m_Name: Tower Settings
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: -4246878893203589945, guid: 9d67ed8179aa56b49ab6689f0f0ebfd9,
+    type: 3}
+  emptyTowerMaterials:
+  - {fileID: 2100000, guid: 06f169136b6c34d4388524da1d2e6257, type: 2}
+  - {fileID: 2100000, guid: 425e28220b7d32d4db6f608e370d68c9, type: 2}
+  playerTowerMaterials:
+  - {fileID: 2100000, guid: 08ea2c5977cfcd9419d0a8cc5af0f79c, type: 2}
+  - {fileID: 2100000, guid: 84a6fce11da455646a06e44cd80cd368, type: 2}
+  enemy1TowerMaterials:
+  - {fileID: 2100000, guid: 873f35b1e18ab7046b999120e5bc5b2e, type: 2}
+  - {fileID: 2100000, guid: e54c614981708044abc9605eea2af775, type: 2}
+  enemy2TowerMaterials:
+  - {fileID: 2100000, guid: 0e7c99f7a823a8946b15d866c61d1832, type: 2}
+  - {fileID: 2100000, guid: 07ed08e114f44b1499f18aee6f14c35c, type: 2}
+  enemy3TowerMaterials:
+  - {fileID: 2100000, guid: 410f7553126e6e34a8759631772f7a63, type: 2}
+  - {fileID: 2100000, guid: c073e7552678e2d41a45f5e1978c246a, type: 2}
