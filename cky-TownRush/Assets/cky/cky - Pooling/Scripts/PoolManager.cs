@@ -16,7 +16,9 @@ namespace CKY.Pooling
         public List<Pool> pools;
         public Dictionary<Transform, Queue<GameObject>> poolDictionary;
 
-        private void Start()
+        protected override void OnFirstAwake() => Initialize();
+
+        private void Initialize()
         {
             poolDictionary = new Dictionary<Transform, Queue<GameObject>>();
 
