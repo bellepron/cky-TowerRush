@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace cky.Board
+namespace TownRush.Board
 {
     public class HexagonTile : MonoBehaviour, ITile
     {

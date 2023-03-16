@@ -1,6 +1,6 @@
 using cky.StateMachine.Base;
 
-namespace TownRush.Soldier.StateMachine
+namespace TownRush.Characters.Soldier.StateMachine
 {
     public abstract class SoldierBaseState : BaseState
     {

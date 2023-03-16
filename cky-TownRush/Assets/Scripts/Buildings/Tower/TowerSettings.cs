@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace cky.Buildings.Tower
+namespace TownRush.Buildings.Tower
 {
     [CreateAssetMenu(menuName = "Scriptable Objects/Buildings/Tower Settings")]
     public class TowerSettings : ScriptableObject

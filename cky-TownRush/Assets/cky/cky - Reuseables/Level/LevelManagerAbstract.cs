@@ -7,7 +7,7 @@ namespace cky.Reuseables.Level
 {
     public class LevelManagerAbstract : SingletonPersistent<LevelManagerAbstract>
     {
-        public LevelSettings[] levels;
+        [SerializeField] LevelSettings[] levels;
         public LevelSettings levelSettings;
 
         int _levelIndex;

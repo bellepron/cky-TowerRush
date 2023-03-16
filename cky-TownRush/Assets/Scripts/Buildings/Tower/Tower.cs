@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace cky.Buildings.Tower
+namespace TownRush.Buildings.Tower
 {
     public class Tower : BuildingAbstract
     {

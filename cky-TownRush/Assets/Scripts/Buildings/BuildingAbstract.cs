@@ -1,7 +1,7 @@
-using cky.Buildings.Tower;
+using TownRush.Buildings.Tower;
 using UnityEngine;
 
-namespace cky.Buildings
+namespace TownRush.Buildings
 {
     public abstract class BuildingAbstract : MonoBehaviour
     {

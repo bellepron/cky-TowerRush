@@ -1,12 +1,13 @@
+using TownRush.Managers;
 using UnityEngine;
 
-namespace cky.Buildings.Tower
+namespace TownRush.Buildings.Tower
 {
     public static class TowerMaterialHelper
     {
         public static Material[] SetMaterials(TowerType type)
         {
-            var towerSettings = LevelManager.Instance.settings.towerSettings;
+            var towerSettings = LevelManager.Instance.levelSettings.towerSettings;
 
             switch (type)
             {

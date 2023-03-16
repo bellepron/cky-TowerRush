@@ -1,7 +1,7 @@
-using TownRush.Soldier.StateMachine;
+using TownRush.Characters.Soldier.StateMachine;
 using UnityEngine;
 
-namespace TownRush.Soldier.States
+namespace TownRush.Characters.Soldier.States
 {
     public class SoldierChargeState : SoldierBaseState
     {
@@ -9,17 +9,17 @@ namespace TownRush.Soldier.States
 
         public override void Enter()
         {
-            
+
         }
 
         public override void Exit()
         {
-            
+
         }
 
         public override void Tick(float deltaTime)
         {
-            
+
         }
     }
 }

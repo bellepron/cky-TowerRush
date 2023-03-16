@@ -1,14 +1,14 @@
 using cky.StateMachine.Base;
-using TownRush.Soldier.States;
+using TownRush.Characters.Soldier.States;
 using UnityEngine;
 
-namespace TownRush.Soldier.StateMachine
+namespace TownRush.Characters.Soldier.StateMachine
 {
     public class SoldierStateMachine : BaseStateMachine
     {
         [field: SerializeField] public float MovementSpeed { get; private set; } = 3.0f;
         [field: SerializeField] public Transform TargetTr { get; private set; }
-        //[field: SerializeField] public Animator Animator { get; private set; }
+        [field: SerializeField] public SoldierAnimator Animator { get; private set; }
         //[field: SerializeField] public Targeter Targeter { get; private set; }
 
         private void Start()

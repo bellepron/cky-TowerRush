@@ -1,7 +1,8 @@
-using cky.Buildings.Tower;
+using cky.Reuseables.Level;
+using TownRush.Buildings.Tower;
 using UnityEngine;
 
-namespace cky.Buildings
+namespace TownRush.Buildings
 {
     public class BuildingSpawner
     {

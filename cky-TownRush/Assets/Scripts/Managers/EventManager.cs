@@ -1,9 +1,9 @@
 using cky.Reuseables.Singleton;
 using System;
 
-namespace cky.Reuseables.Managers
+namespace TownRush.Managers
 {
-    public abstract class EventManagerAbstract : SingletonPersistent<EventManagerAbstract>
+    public class EventManager : SingletonPersistent<EventManager>
     {
         public static event Action GameEnd, GameSuccess, GameFail;
 
@@ -17,6 +17,7 @@ namespace cky.Reuseables.Managers
         }
 
         #region Core
+
         public void GameEndEvent() => GameEnd?.Invoke();
         public void GameSuccessEvent() => GameSuccess?.Invoke();
         public void GameFailEvent() => GameFail?.Invoke();

@@ -1,6 +1,7 @@
+using cky.Reuseables.Level;
 using UnityEngine;
 
-namespace cky.Board
+namespace TownRush.Board
 {
     public class BoardManager : MonoBehaviour
     {
@@ -23,7 +24,7 @@ namespace cky.Board
 
         private void SetVariables()
         {
-            _s = LevelManager.Instance.settings;
+            _s = LevelManagerAbstract.Instance.levelSettings;
             _hexagonTilePrefab = _s.hexagonTilePrefab;
             _width = _s.boardWidth;
             _height = _s.boardHeight;
