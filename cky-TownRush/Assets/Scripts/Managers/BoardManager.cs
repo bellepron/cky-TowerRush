@@ -42,7 +42,7 @@ namespace TownRush.Managers
                         }
                     }
 
-                    tile.ChangeMaterial(closestBuilding.GetBuildingOwnerType());
+                    tile.ChangeMaterial(closestBuilding.GetOwnerType());
                 }
             }
         }

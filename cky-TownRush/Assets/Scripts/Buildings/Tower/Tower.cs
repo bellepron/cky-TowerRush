@@ -1,6 +1,7 @@
-using TMPro;
+using TownRush.Enums;
 using TownRush.Helpers;
 using UnityEngine;
+using TMPro;
 
 namespace TownRush.Buildings.Tower
 {
@@ -14,23 +15,23 @@ namespace TownRush.Buildings.Tower
         public override void Initialize(TowerInfo towerInfo)
         {
             TowerInfo = towerInfo;
-            SetFloor(TowerInfo.startFloor);
+            SetFloor(TowerInfo.StartFloor);
 
-            ChangeMaterial(TowerInfo.buildingOwnerType);
+            ChangeMaterial(TowerInfo.OwnerType);
         }
 
-        public override void SetBuildingOwnerType(BuildingOwnerTypes buildingOwnerType)
+        public override void SetOwnerType(OwnerTypes ownerType)
         {
-            TowerInfo.SetTowerType(buildingOwnerType);
+            TowerInfo.SetTowerType(ownerType);
 
-            ChangeMaterial(buildingOwnerType);
+            ChangeMaterial(ownerType);
         }
 
-        public override BuildingOwnerTypes GetBuildingOwnerType() => TowerInfo.buildingOwnerType;
+        public override OwnerTypes GetOwnerType() => TowerInfo.OwnerType;
 
-        public override void ChangeMaterial(BuildingOwnerTypes buildingOwnerType)
+        public override void ChangeMaterial(OwnerTypes ownerType)
         {
-            MeshRenderer.materials = MaterialHelper.SetTowerMaterials(buildingOwnerType);
+            MeshRenderer.materials = MaterialHelper.SetTowerMaterials(ownerType);
         }
 
         private void SetFloor(int currentFloor)

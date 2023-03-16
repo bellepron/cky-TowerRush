@@ -23,7 +23,7 @@ namespace TownRush.Buildings
 
         public void CreateTower(TowerInfo towerInfo)
         {
-            var towerTr = PoolManager.Instance.Spawn(_towerPrefab, towerInfo.initPos, Quaternion.identity);
+            var towerTr = PoolManager.Instance.Spawn(_towerPrefab, towerInfo.InitPos, Quaternion.identity);
             //var towerTr = MonoBehaviour.Instantiate(_towerPrefab, towerInfo.initPos, Quaternion.identity);
 
             if (towerTr.TryGetComponent<BuildingAbstract>(out var buildingAbstract))

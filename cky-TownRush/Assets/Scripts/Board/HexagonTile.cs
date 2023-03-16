@@ -1,4 +1,4 @@
-using TownRush.Buildings;
+using TownRush.Enums;
 using TownRush.Helpers;
 using UnityEngine;
 
@@ -14,11 +14,11 @@ namespace TownRush.Board
         {
             TileSettings = tileSettings;
             MeshRenderer = GetComponent<MeshRenderer>();
-            GetComponent<ITile>().ChangeMaterial(BuildingOwnerTypes.EMPTY);
+            GetComponent<ITile>().ChangeMaterial(OwnerTypes.EMPTY);
         }
 
-        void ITile.ChangeMaterial(BuildingOwnerTypes buildingOwnerTypes)
-            => MeshRenderer.material = MaterialHelper.SetTileMaterial(buildingOwnerTypes);
+        void ITile.ChangeMaterial(OwnerTypes ownerTypes)
+            => MeshRenderer.material = MaterialHelper.SetTileMaterial(ownerTypes);
 
         Vector3 ITile.GetPosition() => transform.position;
     }

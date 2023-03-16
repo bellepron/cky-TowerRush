@@ -1,4 +1,4 @@
-namespace TownRush.Buildings
+namespace TownRush.Enums
 {
-    public enum BuildingOwnerTypes { EMPTY, PLAYER, ENEMY1, ENEMY2, ENEMY3 };
+    public enum OwnerTypes { EMPTY, PLAYER, ENEMY1, ENEMY2, ENEMY3 };
 }

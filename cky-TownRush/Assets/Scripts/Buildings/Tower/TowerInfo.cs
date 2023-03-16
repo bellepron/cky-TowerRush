@@ -1,3 +1,4 @@
+using TownRush.Enums;
 using UnityEngine;
 
 namespace TownRush.Buildings.Tower
@@ -5,19 +6,19 @@ namespace TownRush.Buildings.Tower
     [System.Serializable]
     public struct TowerInfo
     {
-        public BuildingOwnerTypes buildingOwnerType;
-        public Vector3 initPos;
-        public int startFloor;
+        [field: SerializeField] public OwnerTypes OwnerType { get; set; }
+        [field: SerializeField] public Vector3 InitPos { get; set; }
+        [field: SerializeField] public int StartFloor { get; set; }
 
-        public TowerInfo(BuildingOwnerTypes buildingOwnerType, Vector3 initPos, int startFloor)
+        public TowerInfo(OwnerTypes ownerType, Vector3 initPos, int startFloor)
         {
-            this.buildingOwnerType = buildingOwnerType;
-            this.initPos = initPos;
-            this.startFloor = startFloor;
+            this.OwnerType = ownerType;
+            this.InitPos = initPos;
+            this.StartFloor = startFloor;
 
-            SetTowerType(buildingOwnerType);
+            SetTowerType(ownerType);
         }
 
-        public void SetTowerType(BuildingOwnerTypes type) => buildingOwnerType = type;
+        public void SetTowerType(OwnerTypes type) => OwnerType = type;
     }
 }

@@ -31,5 +31,8 @@ namespace TownRush.Characters.Soldier
         public void Walk() => Animator.CrossFade(AnimatorHelper.WALK, TransitionTime, 0);
 
         public void Attack() => Animator.CrossFade(AnimatorHelper.ATTACK, TransitionTime, 0);
+        public void Win() => Animator.CrossFade(AnimatorHelper.WIN, TransitionTime, 0);
+
+        public void Lose() => Animator.CrossFade(AnimatorHelper.LOSE, TransitionTime, 0);
     }
 }

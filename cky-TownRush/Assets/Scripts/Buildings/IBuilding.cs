@@ -1,10 +1,11 @@
+using TownRush.Enums;
 
 namespace TownRush.Buildings
 {
     public interface IBuilding
     {
-        void SetBuildingOwnerType(BuildingOwnerTypes type);
-        BuildingOwnerTypes GetBuildingOwnerType();
-        void ChangeMaterial(BuildingOwnerTypes buildingOwnerType);
+        void SetOwnerType(OwnerTypes ownerType);
+        OwnerTypes GetOwnerType();
+        void ChangeMaterial(OwnerTypes ownerType);
     }
 }

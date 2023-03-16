@@ -1,52 +1,82 @@
-using TownRush.Buildings;
+using TownRush.Buildings.Tower;
 using TownRush.Managers;
+using TownRush.Enums;
+using TownRush.Board;
 using UnityEngine;
 
 namespace TownRush.Helpers
 {
     public static class MaterialHelper
     {
-        public static Material SetTileMaterial(BuildingOwnerTypes type)
+        #region Settings
+
+        private static TileSettings _tileSettings;
+        private static TileSettings TileSettings
         {
-            var settings = GameManager.Instance.levelSettings.TileSettings;
-
-            switch (type)
+            get
             {
-                case BuildingOwnerTypes.EMPTY:
-                    return settings.EmptyTileMat;
-                case BuildingOwnerTypes.PLAYER:
-                    return settings.PlayerTileMat;
-                case BuildingOwnerTypes.ENEMY1:
-                    return settings.EnemyTileMats[0];
-                case BuildingOwnerTypes.ENEMY2:
-                    return settings.EnemyTileMats[1];
-                case BuildingOwnerTypes.ENEMY3:
-                    return settings.EnemyTileMats[2];
+                if (_tileSettings == null)
+                {
+                    _tileSettings = GameManager.Instance.levelSettings.TileSettings;
+                }
 
-                default:
-                    return settings.EmptyTileMat;
+                return _tileSettings;
             }
         }
 
-        public static Material[] SetTowerMaterials(BuildingOwnerTypes type)
+        private static TowerSettings _towerSettings;
+        private static TowerSettings TowerSettings
         {
-            var settings = GameManager.Instance.levelSettings.TowerSettings;
-
-            switch (type)
+            get
             {
-                case BuildingOwnerTypes.EMPTY:
-                    return settings.EmptyTowerMaterials;
-                case BuildingOwnerTypes.PLAYER:
-                    return settings.PlayerTowerMaterials;
-                case BuildingOwnerTypes.ENEMY1:
-                    return settings.Enemy1TowerMaterials;
-                case BuildingOwnerTypes.ENEMY2:
-                    return settings.Enemy2TowerMaterials;
-                case BuildingOwnerTypes.ENEMY3:
-                    return settings.Enemy3TowerMaterials;
+                if (_towerSettings == null)
+                {
+                    _towerSettings = GameManager.Instance.levelSettings.TowerSettings;
+                }
+
+                return _towerSettings;
+            }
+        }
+
+        #endregion
+
+        public static Material SetTileMaterial(OwnerTypes ownerType)
+        {
+            switch (ownerType)
+            {
+                case OwnerTypes.EMPTY:
+                    return TileSettings.EmptyTileMat;
+                case OwnerTypes.PLAYER:
+                    return TileSettings.PlayerTileMat;
+                case OwnerTypes.ENEMY1:
+                    return TileSettings.EnemyTileMats[0];
+                case OwnerTypes.ENEMY2:
+                    return TileSettings.EnemyTileMats[1];
+                case OwnerTypes.ENEMY3:
+                    return TileSettings.EnemyTileMats[2];
 
                 default:
-                    return settings.EmptyTowerMaterials;
+                    return TileSettings.EmptyTileMat;
+            }
+        }
+
+        public static Material[] SetTowerMaterials(OwnerTypes ownerType)
+        {
+            switch (ownerType)
+            {
+                case OwnerTypes.EMPTY:
+                    return TowerSettings.EmptyTowerMaterials;
+                case OwnerTypes.PLAYER:
+                    return TowerSettings.PlayerTowerMaterials;
+                case OwnerTypes.ENEMY1:
+                    return TowerSettings.Enemy1TowerMaterials;
+                case OwnerTypes.ENEMY2:
+                    return TowerSettings.Enemy2TowerMaterials;
+                case OwnerTypes.ENEMY3:
+                    return TowerSettings.Enemy3TowerMaterials;
+
+                default:
+                    return TowerSettings.EmptyTowerMaterials;
             }
         }
     }

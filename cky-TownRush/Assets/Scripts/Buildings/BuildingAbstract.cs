@@ -1,4 +1,5 @@
 using TownRush.Buildings.Tower;
+using TownRush.Enums;
 using UnityEngine;
 
 namespace TownRush.Buildings
@@ -10,10 +11,10 @@ namespace TownRush.Buildings
 
         public virtual void Initialize(TowerInfo towerInfo) => ChangeMaterial(0);
 
-        public abstract void SetBuildingOwnerType(BuildingOwnerTypes buildingOwnerType);
+        public abstract void SetOwnerType(OwnerTypes ownerType);
 
-        public abstract BuildingOwnerTypes GetBuildingOwnerType();
+        public abstract OwnerTypes GetOwnerType();
 
-        public abstract void ChangeMaterial(BuildingOwnerTypes buildingOwnerType);
+        public abstract void ChangeMaterial(OwnerTypes buildingOwnerType);
     }
 }
