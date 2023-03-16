@@ -11,7 +11,7 @@ namespace TownRush.Managers
 {
     public class GameManager : GameManagerAbstract
     {
-        [field: SerializeField] private PoolManager PoolManager { get; set; }
+        [field: SerializeField] public PoolManager PoolManager { get; private set; }
 
         protected override void OnPerAwake()
         {
@@ -25,8 +25,9 @@ namespace TownRush.Managers
             yield return null;
 
             new EventManager();
-            new BoardCreator(levelSettings);
+            var boardCreator = new BoardCreator(levelSettings);
             new BuildingSpawner(levelSettings);
+            new BoardManager(boardCreator.Tiles);
         }
 
         private void Update()
