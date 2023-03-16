@@ -1,4 +1,3 @@
-using TownRush.Enums;
 using UnityEngine;
 
 namespace TownRush.Board
@@ -7,7 +6,6 @@ namespace TownRush.Board
     {
         public TileSettings TileSettings { get; set; }
         void Initialize(TileSettings tileSettings);
-        void ChangeMaterial(OwnerTypes ownerType);
         Vector3 GetPosition();
     }
 }

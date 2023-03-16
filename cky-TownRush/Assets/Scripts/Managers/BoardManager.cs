@@ -17,12 +17,12 @@ namespace TownRush.Managers
             _tiles = tiles;
             buildings = MonoBehaviour.FindObjectsOfType<BuildingAbstract>();
 
-            SetColors();
+            SetTileColors();
 
-            EventManager.UpdateTileColors += SetColors;
+            EventManager.UpdateTileColors += SetTileColors;
         }
 
-        public void SetColors()
+        public void SetTileColors()
         {
             for (int j = 0; j < _tiles.GetLength(1); j++)
             {
@@ -43,9 +43,13 @@ namespace TownRush.Managers
                         }
                     }
 
-                    if (closestBuilding.TryGetComponent<IOwnable>(out var iOwnable))
+                    if (closestBuilding.TryGetComponent<IOwnable>(out var closestBuildingiOwnable))
                     {
-                        tile.ChangeMaterial(iOwnable.OwnerType);
+                        var tileAbstract = (TileAbstract)tile;
+                        if (tileAbstract.TryGetComponent<IOwnable>(out var tileIOwnable))
+                        {
+                            tileIOwnable.SetOwnerType(closestBuildingiOwnable.OwnerType);
+                        }
                     }
                 }
             }
