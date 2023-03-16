@@ -6,5 +6,9 @@ namespace TownRush.Managers
     public class EventManager : EventManagerAbstract<EventManager>
     {
         public static readonly EventManager Instance = new EventManager();
+
+        public static event Action UpdateTileColors;
+
+        public void TriggerUpdateTileColors() => UpdateTileColors?.Invoke();
     }
 }

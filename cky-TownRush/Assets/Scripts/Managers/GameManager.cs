@@ -1,6 +1,7 @@
 using cky.Reuseables.Helpers;
 using cky.Reuseables.Managers;
 using CKY.Pooling;
+using System;
 using System.Collections;
 using TownRush.Board;
 using TownRush.Buildings;
@@ -13,6 +14,11 @@ namespace TownRush.Managers
     {
         [field: SerializeField] public PoolManager PoolManager { get; private set; }
 
+        [field: SerializeField] public EventManager EventManager { get; private set; }
+        [field: SerializeField] public BoardCreator BoardCreator { get; private set; }
+        [field: SerializeField] public BuildingSpawner BuildingSpawner { get; private set; }
+        [field: SerializeField] public BoardManager BoardManager { get; private set; }
+
         protected override void OnPerAwake()
         {
             base.OnPerAwake();
@@ -24,19 +30,37 @@ namespace TownRush.Managers
         {
             yield return null;
 
-            new EventManager();
-            var boardCreator = new BoardCreator(levelSettings);
-            new BuildingSpawner(levelSettings);
-            new BoardManager(boardCreator.Tiles);
+            CreateComponents();
         }
 
+        private void CreateComponents()
+        {
+            EventManager = new EventManager();
+            BoardCreator = new BoardCreator(levelSettings);
+            BuildingSpawner = new BuildingSpawner(levelSettings);
+            BoardManager = new BoardManager(BoardCreator.Tiles);
+        }
+
+        private void LoadNewScene()
+        {
+            PoolManager.ResetPool();
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        #region Test
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
-                PoolManager.ResetPool();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                LoadNewScene();
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                EventManager.Instance.TriggerUpdateTileColors();
             }
         }
+        #endregion
     }
 }

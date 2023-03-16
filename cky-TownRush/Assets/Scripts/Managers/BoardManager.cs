@@ -9,18 +9,20 @@ namespace TownRush.Managers
         public static BoardManager Instance;
 
         ITile[,] _tiles;
+        BuildingAbstract[] buildings;
 
         public BoardManager(ITile[,] tiles)
         {
             _tiles = tiles;
+            buildings = MonoBehaviour.FindObjectsOfType<BuildingAbstract>();
 
             SetColors();
+
+            EventManager.UpdateTileColors += SetColors;
         }
 
         public void SetColors()
         {
-            var buildings = MonoBehaviour.FindObjectsOfType<BuildingAbstract>();
-
             for (int j = 0; j < _tiles.GetLength(1); j++)
             {
                 for (int i = 0; i < _tiles.GetLength(0); i++)
@@ -39,14 +41,8 @@ namespace TownRush.Managers
                             closestBuilding = building;
                         }
                     }
-                    Debug.Log(closestBuilding.GetBuildingOwnerType());
 
                     tile.ChangeMaterial(closestBuilding.GetBuildingOwnerType());
-
-                    //if (closestBuilding.TryGetComponent<IBuilding>(out var iBuilding))
-                    //{
-                    //    iBuilding.
-                    //}
                 }
             }
         }
