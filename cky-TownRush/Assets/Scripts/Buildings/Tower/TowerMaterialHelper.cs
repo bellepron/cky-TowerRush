@@ -7,23 +7,23 @@ namespace TownRush.Buildings.Tower
     {
         public static Material[] SetMaterials(TowerType type)
         {
-            var towerSettings = GameManager.Instance.levelSettings.towerSettings;
+            var towerSettings = GameManager.Instance.levelSettings.TowerSettings;
 
             switch (type)
             {
                 case TowerType.EMPTY:
-                    return towerSettings.emptyTowerMaterials;
+                    return towerSettings.EmptyTowerMaterials;
                 case TowerType.PLAYER:
-                    return towerSettings.playerTowerMaterials;
+                    return towerSettings.PlayerTowerMaterials;
                 case TowerType.ENEMY1:
-                    return towerSettings.enemy1TowerMaterials;
+                    return towerSettings.Enemy1TowerMaterials;
                 case TowerType.ENEMY2:
-                    return towerSettings.enemy2TowerMaterials;
+                    return towerSettings.Enemy2TowerMaterials;
                 case TowerType.ENEMY3:
-                    return towerSettings.enemy3TowerMaterials;
+                    return towerSettings.Enemy3TowerMaterials;
 
                 default:
-                    return towerSettings.emptyTowerMaterials;
+                    return towerSettings.EmptyTowerMaterials;
             }
         }
     }
