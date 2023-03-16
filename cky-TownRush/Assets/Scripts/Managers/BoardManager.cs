@@ -1,5 +1,6 @@
 using TownRush.Board;
 using TownRush.Buildings;
+using TownRush.Interfaces;
 using UnityEngine;
 
 namespace TownRush.Managers
@@ -42,7 +43,10 @@ namespace TownRush.Managers
                         }
                     }
 
-                    tile.ChangeMaterial(closestBuilding.GetOwnerType());
+                    if (closestBuilding.TryGetComponent<IOwnable>(out var iOwnable))
+                    {
+                        tile.ChangeMaterial(iOwnable.OwnerType);
+                    }
                 }
             }
         }
