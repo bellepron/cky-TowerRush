@@ -17,7 +17,7 @@ namespace TownRush.Managers
         {
             base.OnPerAwake();
 
-            StaticCoroutine.Perform(OnStart());
+            StaticCoroutineCky.Perform(OnStart());
         }
 
         private IEnumerator OnStart()
