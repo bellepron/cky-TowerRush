@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace TownRush.Board
 {
-    public class BoardManager : MonoBehaviour
+    public class BoardCreator
     {
-        LevelSettings _s;
+        LevelSettings _levelSettings;
 
         HexagonTile _hexagonTilePrefab;
         int _width;
@@ -16,19 +16,21 @@ namespace TownRush.Board
 
         ITile[,] _tiles;
 
-        private void Start()
+        public BoardCreator(LevelSettings levelSettings)
         {
+            _levelSettings = levelSettings;
+
             SetVariables();
             CreateBoard();
         }
 
         private void SetVariables()
         {
-            _s = LevelManagerAbstract.Instance.levelSettings;
-            _hexagonTilePrefab = _s.hexagonTilePrefab;
-            _width = _s.boardWidth;
-            _height = _s.boardHeight;
-            _gap = _s.tileGap;
+            _levelSettings = LevelManagerAbstract.Instance.levelSettings;
+            _hexagonTilePrefab = _levelSettings.hexagonTilePrefab;
+            _width = _levelSettings.boardWidth;
+            _height = _levelSettings.boardHeight;
+            _gap = _levelSettings.tileGap;
             _startPos = new Vector3(-(_width - 1) * (_tileX * 0.5f + _gap * 0.5f), 0, -(_height - 1) * (_tileZ * 0.375f + _gap * 0.5f));
 
             _tiles = new ITile[_width, _height];
@@ -44,10 +46,10 @@ namespace TownRush.Board
                 {
                     Vector3 pos = _startPos + new Vector3(secondRowOffsetX + i * _tileX + i * _gap, 0, j * _tileZ * 0.75f + j * _gap);
 
-                    HexagonTile tile = Instantiate(_hexagonTilePrefab, pos, Quaternion.Euler(-90, 0, 0));
+                    HexagonTile tile = MonoBehaviour.Instantiate(_hexagonTilePrefab, pos, Quaternion.Euler(-90, 0, 0));
                     _tiles[i, j] = tile;
 
-                    tile.Initialize(_s.tileSettings.emptyTileMat);
+                    tile.Initialize(_levelSettings.tileSettings.emptyTileMat);
                 }
             }
         }

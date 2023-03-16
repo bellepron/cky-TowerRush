@@ -1,4 +1,5 @@
 using cky.Reuseables.Level;
+using TownRush.Board;
 using TownRush.Buildings;
 
 namespace TownRush.Managers
@@ -12,6 +13,7 @@ namespace TownRush.Managers
 
         private void Start()
         {
+            new BoardCreator(levelSettings);
             new BuildingSpawner(levelSettings);
         }
     }
