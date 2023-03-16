@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TownRush.Helpers
 {
-    public class AnimatorHelper : MonoBehaviour
+    public class AnimatorHelper
     {
         public static readonly int IDLE = Animator.StringToHash("Idle");
         public static readonly int WALK = Animator.StringToHash("Walk");
