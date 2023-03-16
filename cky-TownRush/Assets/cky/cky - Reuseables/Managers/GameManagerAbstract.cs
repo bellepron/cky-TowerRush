@@ -1,11 +1,11 @@
 using cky.Reuseables.Singleton;
-using cky.Reuseables.Managers;
 using cky.Reuseables.Helpers;
+using cky.Reuseables.Level;
 using UnityEngine;
 
-namespace cky.Reuseables.Level
+namespace cky.Reuseables.Managers
 {
-    public class LevelManagerAbstract : SingletonPersistent<LevelManagerAbstract>
+    public class GameManagerAbstract : SingletonPersistent<GameManagerAbstract>
     {
         [SerializeField] LevelSettings[] levels;
         public LevelSettings levelSettings;
@@ -16,16 +16,9 @@ namespace cky.Reuseables.Level
         {
             _levelIndex = PlayerPrefs.GetInt(PlayerPrefHelper.pPrefsLevelIndex);
             levelSettings = levels[_levelIndex % levels.Length];
-
-            EventManagerAbstract.GameSuccess += OnGameSuccess;
         }
 
-        private void OnDisable()
-        {
-            EventManagerAbstract.GameSuccess -= OnGameSuccess;
-        }
-
-        private void OnGameSuccess()
+        protected void OnGameSuccess()
         {
             _levelIndex++;
             PlayerPrefs.SetInt(PlayerPrefHelper.pPrefsLevelIndex, _levelIndex);

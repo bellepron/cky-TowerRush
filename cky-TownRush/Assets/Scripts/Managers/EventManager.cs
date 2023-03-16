@@ -1,27 +1,10 @@
-using cky.Reuseables.Singleton;
+using cky.Reuseables.Managers;
 using System;
 
 namespace TownRush.Managers
 {
-    public class EventManager : SingletonPersistent<EventManager>
+    public class EventManager : EventManagerAbstract<EventManager>
     {
-        public static event Action GameEnd, GameSuccess, GameFail;
-
-        protected override void OnPerAwake() => ResetEvents();
-
-        protected virtual void ResetEvents()
-        {
-            GameEnd = null;
-            GameSuccess = null;
-            GameFail = null;
-        }
-
-        #region Core
-
-        public void GameEndEvent() => GameEnd?.Invoke();
-        public void GameSuccessEvent() => GameSuccess?.Invoke();
-        public void GameFailEvent() => GameFail?.Invoke();
-
-        #endregion
+        public static readonly EventManager Instance = new EventManager();
     }
 }

@@ -7,7 +7,7 @@ namespace TownRush.Buildings.Tower
     {
         public static Material[] SetMaterials(TowerType type)
         {
-            var towerSettings = LevelManager.Instance.levelSettings.towerSettings;
+            var towerSettings = GameManager.Instance.levelSettings.towerSettings;
 
             switch (type)
             {

@@ -1,4 +1,5 @@
 using cky.Reuseables.Level;
+using TownRush.Managers;
 using UnityEngine;
 
 namespace TownRush.Board
@@ -26,7 +27,7 @@ namespace TownRush.Board
 
         private void SetVariables()
         {
-            _levelSettings = LevelManagerAbstract.Instance.levelSettings;
+            _levelSettings = GameManager.Instance.levelSettings;
             _hexagonTilePrefab = _levelSettings.hexagonTilePrefab;
             _width = _levelSettings.boardWidth;
             _height = _levelSettings.boardHeight;
