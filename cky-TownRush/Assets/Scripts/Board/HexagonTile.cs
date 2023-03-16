@@ -1,20 +1,25 @@
+using TownRush.Buildings;
+using TownRush.Helpers;
 using UnityEngine;
 
 namespace TownRush.Board
 {
     public class HexagonTile : MonoBehaviour, ITile
     {
-        MeshRenderer _mr;
+        [field: SerializeField] public MeshRenderer MeshRenderer { get; private set; }
 
-        public void Initialize(Material material)
+        public TileSettings TileSettings { get; set; }
+
+        void ITile.Initialize(TileSettings tileSettings)
         {
-            _mr = GetComponent<MeshRenderer>();
-            ChangeMaterial(material);
+            TileSettings = tileSettings;
+            MeshRenderer = GetComponent<MeshRenderer>();
+            GetComponent<ITile>().ChangeMaterial(BuildingOwnerTypes.EMPTY);
         }
 
-        public void ChangeMaterial(Material material)
-        {
-            _mr.material = material;
-        }
+        void ITile.ChangeMaterial(BuildingOwnerTypes buildingOwnerTypes)
+            => MeshRenderer.material = MaterialHelper.SetTileMaterial(buildingOwnerTypes);
+
+        Vector3 ITile.GetPosition() => transform.position;
     }
 }

@@ -5,19 +5,19 @@ namespace TownRush.Buildings.Tower
     [System.Serializable]
     public struct TowerInfo
     {
-        public TowerType towerType;
+        public BuildingOwnerTypes buildingOwnerType;
         public Vector3 initPos;
         public int startFloor;
 
-        public TowerInfo(TowerType towerType, Vector3 initPos, int startFloor)
+        public TowerInfo(BuildingOwnerTypes buildingOwnerType, Vector3 initPos, int startFloor)
         {
-            this.towerType = towerType;
+            this.buildingOwnerType = buildingOwnerType;
             this.initPos = initPos;
             this.startFloor = startFloor;
 
-            SetTowerType(towerType);
+            SetTowerType(buildingOwnerType);
         }
 
-        public void SetTowerType(TowerType type) => towerType = type;
+        public void SetTowerType(BuildingOwnerTypes type) => buildingOwnerType = type;
     }
 }

@@ -1,49 +1,43 @@
 using TMPro;
+using TownRush.Helpers;
 using UnityEngine;
 
 namespace TownRush.Buildings.Tower
 {
     public class Tower : BuildingAbstract
     {
-        TowerInfo _towerInfo;
-        int _currentFloor;
+        private TowerInfo TowerInfo { get; set; }
+        private int CurrentFloor { get; set; }
 
         [SerializeField] TextMeshProUGUI currentFloorTMP;
 
         public override void Initialize(TowerInfo towerInfo)
         {
-            GetMeshRenderer();
+            TowerInfo = towerInfo;
+            SetFloor(TowerInfo.startFloor);
 
-            _towerInfo = towerInfo;
-            modelTr = transform.GetChild(0);
-            SetFloor(_towerInfo.startFloor);
-
-            ChangeMaterial();
+            ChangeMaterial(TowerInfo.buildingOwnerType);
         }
 
-        public override void SetType<T>(T type)
+        public override void SetBuildingOwnerType(BuildingOwnerTypes buildingOwnerType)
         {
-            _towerInfo.SetTowerType((TowerType)(object)type);
+            TowerInfo.SetTowerType(buildingOwnerType);
 
-            ChangeMaterial();
+            ChangeMaterial(buildingOwnerType);
         }
 
-        public override void ChangeMaterial()
+        public override BuildingOwnerTypes GetBuildingOwnerType() => TowerInfo.buildingOwnerType;
+
+        public override void ChangeMaterial(BuildingOwnerTypes buildingOwnerType)
         {
-            mr.materials = TowerMaterialHelper.SetMaterials(_towerInfo.towerType);
+            MeshRenderer.materials = MaterialHelper.SetTowerMaterials(buildingOwnerType);
         }
 
         private void SetFloor(int currentFloor)
         {
-            _currentFloor = currentFloor;
-            modelTr.localPosition = new Vector3(0, currentFloor, 0);
+            CurrentFloor = currentFloor;
+            ModelTr.localPosition = new Vector3(0, CurrentFloor, 0);
             //currentFloorTMP.text = $"{_currentFloor}";
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                SetType(TowerType.ENEMY3);
         }
     }
 }

@@ -3,25 +3,17 @@ using UnityEngine;
 
 namespace TownRush.Buildings
 {
-    public abstract class BuildingAbstract : MonoBehaviour
+    public abstract class BuildingAbstract : MonoBehaviour, IBuilding
     {
-        protected Transform modelTr;
-        protected MeshRenderer mr;
+        [field: SerializeField] public Transform ModelTr { get; private set; }
+        [field: SerializeField] public MeshRenderer MeshRenderer { get; private set; }
 
-        public virtual void Initialize(TowerInfo towerInfo)
-        {
-            GetMeshRenderer();
+        public virtual void Initialize(TowerInfo towerInfo) => ChangeMaterial(0);
 
-            ChangeMaterial();
-        }
+        public abstract void SetBuildingOwnerType(BuildingOwnerTypes buildingOwnerType);
 
-        protected void GetMeshRenderer()
-        {
-            mr = GetComponentInChildren<MeshRenderer>();
-        }
+        public abstract BuildingOwnerTypes GetBuildingOwnerType();
 
-        public abstract void SetType<T>(T type);
-
-        public abstract void ChangeMaterial();
+        public abstract void ChangeMaterial(BuildingOwnerTypes buildingOwnerType);
     }
 }

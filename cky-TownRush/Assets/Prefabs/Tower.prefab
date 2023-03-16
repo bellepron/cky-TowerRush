@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a1379d48d04ed4ca42509d5e12b24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ModelTr>k__BackingField: {fileID: 5863886208228802434}
+  <MeshRenderer>k__BackingField: {fileID: 4696016002638791917}
   currentFloorTMP: {fileID: 0}
 --- !u!1 &6497398886040757560
 GameObject:

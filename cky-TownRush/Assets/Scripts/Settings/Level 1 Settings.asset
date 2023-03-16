@@ -20,12 +20,12 @@ MonoBehaviour:
   <TowerSettings>k__BackingField: {fileID: 11400000, guid: 160b72a0adffce745b7685c5286d36b9,
     type: 2}
   <TowersWillCreate>k__BackingField:
-  - towerType: 0
+  - buildingOwnerType: 0
     initPos: {x: 0, y: 0, z: 5}
     startFloor: 5
-  - towerType: 1
-    initPos: {x: 2, y: 0, z: 3}
+  - buildingOwnerType: 1
+    initPos: {x: 3, y: 0, z: 3}
     startFloor: 15
-  - towerType: 2
-    initPos: {x: -2, y: 0, z: 3}
+  - buildingOwnerType: 3
+    initPos: {x: -2, y: 0, z: -3}
     startFloor: 20

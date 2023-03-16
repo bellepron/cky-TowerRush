@@ -1,10 +1,13 @@
+using TownRush.Buildings;
 using UnityEngine;
 
 namespace TownRush.Board
 {
     public interface ITile
     {
-        void Initialize(Material material);
-        void ChangeMaterial(Material material);
+        public TileSettings TileSettings { get; set; }
+        void Initialize(TileSettings tileSettings);
+        void ChangeMaterial(BuildingOwnerTypes buildingOwnerType);
+        Vector3 GetPosition();
     }
 }

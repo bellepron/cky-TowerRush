@@ -7,20 +7,20 @@ namespace TownRush.Board
 {
     public class BoardCreator
     {
-        LevelSettings _levelSettings;
+        private LevelSettings LevelSettings { get; set; }
+        public ITile[,] Tiles { get; private set; }
+        private Transform HexagonTilePrefabTr { get; set; }
+        private int Width { get; set; }
+        private int Height { get; set; }
+        private float Gap { get; set; }
 
-        Transform _hexagonTilePrefabTr;
-        int _width;
-        int _height;
-        float _tileX = 1.73205f, _tileZ = 2.0f; // From Trigonometry
-        float _gap;
-        Vector3 _startPos;
-
-        ITile[,] _tiles;
+        private float _tileX = 1.73205f; // From Trigonometry
+        private float _tileZ = 2.0f; // From Trigonometry
+        private Vector3 _startPos;
 
         public BoardCreator(LevelSettings levelSettings)
         {
-            _levelSettings = levelSettings;
+            LevelSettings = levelSettings;
 
             SetVariables();
             CreateBoard();
@@ -28,34 +28,34 @@ namespace TownRush.Board
 
         private void SetVariables()
         {
-            _levelSettings = GameManager.Instance.levelSettings;
-            _hexagonTilePrefabTr = _levelSettings.TileSettings.TilePrefabTr;
-            _width = _levelSettings.BoardWidth;
-            _height = _levelSettings.BoardHeight;
-            _gap = _levelSettings.TileGap;
-            _startPos = new Vector3(-(_width - 1) * (_tileX * 0.5f + _gap * 0.5f), 0, -(_height - 1) * (_tileZ * 0.375f + _gap * 0.5f));
+            LevelSettings = GameManager.Instance.levelSettings;
+            HexagonTilePrefabTr = LevelSettings.TileSettings.TilePrefabTr;
+            Width = LevelSettings.BoardWidth;
+            Height = LevelSettings.BoardHeight;
+            Gap = LevelSettings.TileGap;
+            _startPos = new Vector3(-(Width - 1) * (_tileX * 0.5f + Gap * 0.5f), 0, -(Height - 1) * (_tileZ * 0.375f + Gap * 0.5f));
 
-            _tiles = new ITile[_width, _height];
+            Tiles = new ITile[Width, Height];
         }
 
         private void CreateBoard()
         {
-            for (int j = 0; j < _height; j++)
+            for (int j = 0; j < Height; j++)
             {
                 var secondRowOffsetX = j % 2 == 0 ? 0 : (_tileX * 0.5f);
 
-                for (int i = 0; i < _width; i++)
+                for (int i = 0; i < Width; i++)
                 {
-                    Vector3 pos = _startPos + new Vector3(secondRowOffsetX + i * _tileX + i * _gap, 0, j * _tileZ * 0.75f + j * _gap);
+                    Vector3 pos = _startPos + new Vector3(secondRowOffsetX + i * _tileX + i * Gap, 0, j * _tileZ * 0.75f + j * Gap);
 
-                    var tileTr = PoolManager.Instance.Spawn(_hexagonTilePrefabTr, pos, Quaternion.Euler(-90, 0, 0));
+                    var tileTr = PoolManager.Instance.Spawn(HexagonTilePrefabTr, pos, Quaternion.Euler(-90, 0, 0));
                     //var tileTr = MonoBehaviour.Instantiate(_hexagonTilePrefabTr, pos, Quaternion.Euler(-90, 0, 0));
 
                     if (tileTr.TryGetComponent<ITile>(out var tile))
                     {
-                        _tiles[i, j] = tile;
+                        Tiles[i, j] = tile;
 
-                        tile.Initialize(_levelSettings.TileSettings.EmptyTileMat);
+                        tile.Initialize(LevelSettings.TileSettings);
                     }
                     else
                     {
