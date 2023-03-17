@@ -8,5 +8,9 @@ namespace TownRush.Characters.Soldier
         [field: SerializeField] public Transform PrefabTr { get; private set; }
         [field: SerializeField] public float MovementSpeed { get; private set; } = 3.0f;
         [field: SerializeField] public int Damage { get; private set; } = 1;
+
+        [field: SerializeField] public Material EmptySoldierMaterial { get; private set; }
+        [field: SerializeField] public Material PlayerSoldierMaterial { get; private set; }
+        [field: SerializeField] public Material[] EnemySoldierMaterials { get; private set; }
     }
 }

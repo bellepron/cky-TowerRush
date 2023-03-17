@@ -1,3 +1,5 @@
+using cky.Inputs;
+using TownRush.Characters;
 using TownRush.Enums;
 using TownRush.Helpers;
 using TownRush.Interfaces;
@@ -5,7 +7,7 @@ using UnityEngine;
 
 namespace TownRush.Board
 {
-    public class TileAbstract : MonoBehaviour, ITile, IOwnable
+    public class TileAbstract : MonoBehaviour, ITile, IOwnable, IClickable
     {
         [field: SerializeField] public MeshRenderer MeshRenderer { get; private set; }
 
@@ -23,12 +25,36 @@ namespace TownRush.Board
         Vector3 ITile.GetPosition() => transform.position;
 
         public void ChangeMaterial(OwnerTypes ownerTypes)
-             => MeshRenderer.material = MaterialHelper.SetTileMaterial(ownerTypes);
+        {
+            MeshRenderer.material = MaterialHelper.SetTileMaterial(ownerTypes);
+        }
 
         public void SetOwnerType(OwnerTypes ownerType)
         {
             OwnerType = ownerType;
             ChangeMaterial(ownerType);
+            SetLayer(ownerType);
+        }
+
+        private void SetLayer(OwnerTypes ownerType)
+        {
+            gameObject.layer = LayerHelper.CLICKABLE_TILE;
+            //if (ownerType == OwnerTypes.PLAYER)
+            //{
+            //    gameObject.layer = LayerHelper.CLICKABLE_TILE;
+            //}
+            //else
+            //{
+            //    gameObject.layer = LayerHelper.NONCLICKABLE_TILE;
+            //}
+        }
+
+        public void OnClick(Vector3 clickedPosition)
+        {
+            //if (OwnerType == OwnerTypes.PLAYER)
+            //{
+            CharacterSpawner.Instance.SpawnSoldier(OwnerType, clickedPosition);
+            //}
         }
     }
 }

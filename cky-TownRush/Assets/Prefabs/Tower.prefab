@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a1379d48d04ed4ca42509d5e12b24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <OwnerType>k__BackingField: 0
   <ModelTr>k__BackingField: {fileID: 5863886208228802434}
   <MeshRenderer>k__BackingField: {fileID: 4696016002638791917}
   currentFloorTMP: {fileID: 0}
@@ -59,6 +60,7 @@ GameObject:
   - component: {fileID: 5863886208228802434}
   - component: {fileID: 7408261843665629223}
   - component: {fileID: 4696016002638791917}
+  - component: {fileID: 8670022445180014940}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -132,3 +134,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8670022445180014940
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6497398886040757560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5
+  m_Height: 50
+  m_Direction: 2
+  m_Center: {x: -1.2498936e-13, y: 0, z: -23.986582}

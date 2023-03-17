@@ -1,17 +1,23 @@
 using TownRush.Characters.Soldier.States;
 using cky.StateMachine.Base;
+using TownRush.Targeting;
 using TownRush.Enums;
 using UnityEngine;
+using TownRush.Interfaces;
+using TownRush.Helpers;
 
 namespace TownRush.Characters.Soldier.StateMachine
 {
-    public class SoldierStateMachine : BaseStateMachine
+    public class SoldierStateMachine : BaseStateMachine, IOwnable
     {
-        [field: SerializeField] public OwnerTypes Owner { get; private set; } = OwnerTypes.PLAYER;
+        [field: SerializeField] public OwnerTypes OwnerType { get; set; }
+        [field: SerializeField] public GameObject CharacterModel { get; private set; }
         [field: SerializeField] public float MovementSpeed { get; private set; } = 3.0f;
         [field: SerializeField] public Transform TargetTr { get; private set; }
         [field: SerializeField] public SoldierAnimator Animator { get; private set; }
-        //[field: SerializeField] public Targeter Targeter { get; private set; }
+        [field: SerializeField] public SkinnedMeshRenderer SkinnedMeshRendererHead { get; private set; }
+        [field: SerializeField] public SkinnedMeshRenderer SkinnedMeshRendererBody { get; private set; }
+        [field: SerializeField] public Targeter Targeter { get; private set; }
 
         private void Start()
         {
@@ -20,10 +26,19 @@ namespace TownRush.Characters.Soldier.StateMachine
 
         protected override void Tick()
         {
-            base.Tick();
 
-            if (Input.GetKeyDown(KeyCode.A)) { SwitchState(new SoldierIdleState(this)); }
-            if (Input.GetKeyDown(KeyCode.S)) { SwitchState(new SoldierChargeState(this)); }
+        }
+
+        public void SetOwnerType(OwnerTypes ownerType)
+        {
+            OwnerType = ownerType;
+            ChangeMaterial(ownerType);
+        }
+
+        public void ChangeMaterial(OwnerTypes ownerType)
+        {
+            SkinnedMeshRendererHead.materials = MaterialHelper.SetTowerMaterials(ownerType);
+            SkinnedMeshRendererBody.materials = MaterialHelper.SetTowerMaterials(ownerType);
         }
     }
 }

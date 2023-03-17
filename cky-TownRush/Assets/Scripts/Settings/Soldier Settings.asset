@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a92082c7513be344be7c6343c51a6dd, type: 3}
+  m_Name: Soldier Settings
+  m_EditorClassIdentifier: 
+  <PrefabTr>k__BackingField: {fileID: 7016161105464192420, guid: 3597683ed3258084aba000a250623082,
+    type: 3}
+  <MovementSpeed>k__BackingField: 3
+  <Damage>k__BackingField: 1
+  <EmptySoldierMaterial>k__BackingField: {fileID: 2100000, guid: b325416e23b756c428ed746751784122,
+    type: 2}
+  <PlayerSoldierMaterial>k__BackingField: {fileID: 2100000, guid: 1bcbef8f2fcd92443beb384b3d157fff,
+    type: 2}
+  <EnemySoldierMaterials>k__BackingField:
+  - {fileID: 2100000, guid: 2f6e9d0775a657743bd0c59632ce3d3d, type: 2}
+  - {fileID: 2100000, guid: 237e3e063ac51e6478e6f4c67fef7e47, type: 2}
+  - {fileID: 2100000, guid: a005f983db10f5c43ab58d8027fbc1fd, type: 2}

@@ -4,7 +4,7 @@ namespace TownRush.Interfaces
 {
     public interface IOwnable
     {
-        OwnerTypes OwnerType { get; set; }
+        public OwnerTypes OwnerType { get; set; }
         void SetOwnerType(OwnerTypes ownerType);
         void ChangeMaterial(OwnerTypes ownerType);
     }

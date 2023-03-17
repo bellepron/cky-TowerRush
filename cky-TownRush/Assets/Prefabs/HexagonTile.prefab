@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4552088665301357027}
   - component: {fileID: 4279777552853920600}
   - component: {fileID: 2053681337736142738}
+  - component: {fileID: 7115889732826864581}
   m_Layer: 0
   m_Name: HexagonTile
   m_TagString: Untagged
@@ -97,3 +98,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7115889732826864581
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540669705601629767}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 96426e40a4b90874a9a4b0e4a953378e, type: 3}

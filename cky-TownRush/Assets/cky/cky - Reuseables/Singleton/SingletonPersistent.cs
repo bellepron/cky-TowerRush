@@ -26,5 +26,10 @@ namespace cky.Reuseables.Singleton
         }
 
         protected virtual void OnPerAwake() { }
+
+        private void OnApplicationQuit()
+        {
+            Destroy(gameObject);
+        }
     }
 }

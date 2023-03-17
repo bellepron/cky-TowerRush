@@ -7,6 +7,8 @@ namespace CKY.Pooling
         private static T _instance;
         private void Awake()
         {
+            OnPerAwake();
+
             if (_instance == null)
             {
                 _instance = GetComponent<T>();
@@ -24,6 +26,8 @@ namespace CKY.Pooling
         {
             get => (T)_instance;
         }
+
+        protected virtual void OnPerAwake() { }
 
         protected virtual void OnFirstAwake() { }
     }

@@ -2,7 +2,6 @@ using TownRush.Enums;
 using TownRush.Helpers;
 using UnityEngine;
 using TMPro;
-using TownRush.Interfaces;
 
 namespace TownRush.Buildings.Tower
 {
@@ -25,6 +24,7 @@ namespace TownRush.Buildings.Tower
         public override void SetOwnerType(OwnerTypes ownerType)
         {
             TowerInfo.SetTowerType(ownerType);
+            OwnerType = ownerType;
 
             ChangeMaterial(ownerType);
         }

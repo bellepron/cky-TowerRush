@@ -1,5 +1,6 @@
 using TownRush.Board;
 using TownRush.Buildings.Tower;
+using TownRush.Characters.Soldier;
 using UnityEngine;
 
 namespace cky.Reuseables.Level
@@ -16,6 +17,9 @@ namespace cky.Reuseables.Level
         [field: Header("Buildings - Tower")]
         [field: SerializeField] public TowerSettings TowerSettings { get; private set; }
         [field: SerializeField] public TowerInfo[] TowersWillCreate { get; private set; }
+
+        [field: Header("Character Settings")]
+        [field: SerializeField] public SoldierSettings SoldierSettings { get; private set; }
 
     }
 }

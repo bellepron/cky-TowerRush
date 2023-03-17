@@ -1,3 +1,4 @@
+using TownRush.Characters.Soldier;
 using TownRush.Buildings.Tower;
 using TownRush.Managers;
 using TownRush.Enums;
@@ -35,6 +36,20 @@ namespace TownRush.Helpers
                 }
 
                 return _towerSettings;
+            }
+        }
+
+        private static SoldierSettings _soldierSettings;
+        private static SoldierSettings SoldierSettings
+        {
+            get
+            {
+                if (_soldierSettings == null)
+                {
+                    _soldierSettings = GameManager.Instance.levelSettings.SoldierSettings;
+                }
+
+                return _soldierSettings;
             }
         }
 
@@ -77,6 +92,26 @@ namespace TownRush.Helpers
 
                 default:
                     return TowerSettings.EmptyTowerMaterials;
+            }
+        }
+
+        public static Material SetSoldierMaterial(OwnerTypes ownerType)
+        {
+            switch (ownerType)
+            {
+                case OwnerTypes.EMPTY:
+                    return SoldierSettings.EmptySoldierMaterial;
+                case OwnerTypes.PLAYER:
+                    return SoldierSettings.PlayerSoldierMaterial;
+                case OwnerTypes.ENEMY1:
+                    return SoldierSettings.EnemySoldierMaterials[0];
+                case OwnerTypes.ENEMY2:
+                    return SoldierSettings.EnemySoldierMaterials[1];
+                case OwnerTypes.ENEMY3:
+                    return SoldierSettings.EnemySoldierMaterials[2];
+
+                default:
+                    return SoldierSettings.EmptySoldierMaterial;
             }
         }
     }
