@@ -5,6 +5,7 @@ using TownRush.Enums;
 using UnityEngine;
 using TownRush.Interfaces;
 using TownRush.Helpers;
+using UnityEngine.AI;
 
 namespace TownRush.Characters.Soldier.StateMachine
 {
@@ -17,6 +18,7 @@ namespace TownRush.Characters.Soldier.StateMachine
         [field: SerializeField] public SoldierAnimator Animator { get; private set; }
         [field: SerializeField] public SkinnedMeshRenderer SkinnedMeshRendererHead { get; private set; }
         [field: SerializeField] public SkinnedMeshRenderer SkinnedMeshRendererBody { get; private set; }
+        [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
         [field: SerializeField] public Targeter Targeter { get; private set; }
 
         private void Start()
@@ -26,7 +28,7 @@ namespace TownRush.Characters.Soldier.StateMachine
 
         protected override void Tick()
         {
-
+            base.Tick();
         }
 
         public void SetOwnerType(OwnerTypes ownerType)

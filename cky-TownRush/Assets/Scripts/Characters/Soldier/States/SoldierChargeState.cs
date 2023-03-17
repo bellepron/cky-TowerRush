@@ -1,5 +1,4 @@
 using TownRush.Characters.Soldier.StateMachine;
-using UnityEngine;
 
 namespace TownRush.Characters.Soldier.States
 {
@@ -9,7 +8,7 @@ namespace TownRush.Characters.Soldier.States
 
         public override void Enter()
         {
-
+            stateMachine.Animator.Walk();
         }
 
         public override void Exit()
@@ -19,7 +18,12 @@ namespace TownRush.Characters.Soldier.States
 
         public override void Tick(float deltaTime)
         {
+            if (stateMachine.Targeter.Target == null)
+            {
+                stateMachine.SwitchState(new SoldierIdleState(stateMachine));
+            }
 
+            stateMachine.NavMeshAgent.destination = stateMachine.Targeter.Target.transform.position;
         }
     }
 }
