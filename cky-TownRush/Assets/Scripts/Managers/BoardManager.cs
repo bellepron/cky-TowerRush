@@ -50,6 +50,14 @@ namespace TownRush.Managers
                         {
                             tileIOwnable.SetOwnerType(closestBuildingiOwnable.OwnerType);
                         }
+                        else
+                        {
+                            Debug.Log("TileAbstract.cs is not inherited IOwnable");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("BuildingAbstract.cs is not inherited IOwnable");
                     }
                 }
             }
