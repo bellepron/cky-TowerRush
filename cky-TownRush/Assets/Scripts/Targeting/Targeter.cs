@@ -65,12 +65,14 @@ namespace TownRush.Targeting
         private void OnEnable()
         {
             Target = null;
+            _bIsSearching = false;
         }
 
         private void OnDisable()
         {
             StopAllCoroutines();
             Target = null;
+            _bIsSearching = false;
         }
 
         private void Find()
