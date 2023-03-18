@@ -63,6 +63,10 @@ namespace CKY.Pooling
             else
             {
                 objectToSpawn = Instantiate(prefabTr.gameObject, poolHolderDictionary[prefabTr]);
+
+                var poolIndex = FindPrefabPoolIndex(prefabTr);
+                spawnedObjInstaneIdDictionary.Add(objectToSpawn.GetInstanceID(), poolIndex);
+                pools[poolIndex].size++;
             }
 
             objectToSpawn.SetActive(true);
@@ -77,6 +81,19 @@ namespace CKY.Pooling
             poolDictionary[prefabTr].Enqueue(objectToSpawn);
 
             return objectToSpawn;
+        }
+
+        private int FindPrefabPoolIndex(Transform prefabTr)
+        {
+            var k = 0;
+            for (int i = 0; i < pools.Count; i++)
+            {
+                if (prefabTr == pools[i].prefabTr)
+                {
+                    k = pools.IndexOf(pools[i]);
+                }
+            }
+            return k;
         }
 
         public void Despawn(GameObject pooledObj)
