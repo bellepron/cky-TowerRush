@@ -7,13 +7,15 @@ namespace TownRush.Buildings.Tower
 {
     public class Tower : BuildingAbstract
     {
+        private TowerSettings TowerSettings { get; set; }
         private TowerInfo TowerInfo { get; set; }
         private int CurrentFloor { get; set; }
 
         [SerializeField] TextMeshProUGUI currentFloorTMP;
 
-        public override void Initialize(TowerInfo towerInfo)
+        public override void Initialize(TowerSettings towerSettings, TowerInfo towerInfo)
         {
+            TowerSettings = towerSettings;
             TowerInfo = towerInfo;
             OwnerType = towerInfo.OwnerType;
             SetFloor(TowerInfo.StartFloor);

@@ -7,28 +7,29 @@ namespace TownRush.Buildings
 {
     public class BuildingSpawner
     {
-        LevelSettings _levelSettings;
-        Transform _towerPrefab;
+        private LevelSettings LevelSettings { get; set; }
+        private TowerSettings TowerSettings { get; set; }
+        private Transform TowerPrefabTr { get; set; }
 
         public BuildingSpawner(LevelSettings levelSettings)
         {
-            _levelSettings = levelSettings;
-            _towerPrefab = _levelSettings.TowerSettings.PrefabTr;
+            LevelSettings = levelSettings;
+            TowerSettings = LevelSettings.TowerSettings;
+            TowerPrefabTr = TowerSettings.PrefabTr;
 
-            for (int i = 0; i < _levelSettings.TowersWillCreate.Length; i++)
+            for (int i = 0; i < LevelSettings.TowersWillCreate.Length; i++)
             {
-                CreateTower(_levelSettings.TowersWillCreate[i]);
+                CreateTower(LevelSettings.TowersWillCreate[i]);
             }
         }
 
         public void CreateTower(TowerInfo towerInfo)
         {
-            var towerTr = PoolManager.Instance.Spawn(_towerPrefab, towerInfo.InitPos, Quaternion.identity);
-            //var towerTr = MonoBehaviour.Instantiate(_towerPrefab, towerInfo.initPos, Quaternion.identity);
+            var towerTr = PoolManager.Instance.Spawn(TowerPrefabTr, towerInfo.InitPos, Quaternion.identity);
 
             if (towerTr.TryGetComponent<BuildingAbstract>(out var buildingAbstract))
             {
-                buildingAbstract.Initialize(towerInfo);
+                buildingAbstract.Initialize(TowerSettings, towerInfo);
             }
         }
     }

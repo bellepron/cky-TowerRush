@@ -9,25 +9,30 @@ using UnityEngine.AI;
 
 namespace TownRush.Characters.Soldier.StateMachine
 {
-    public class SoldierStateMachine : BaseStateMachine, IOwnable, IPooledObject
+    public class SoldierStateMachine : BaseStateMachine, IOwnable
     {
         [field: SerializeField] public OwnerTypes OwnerType { get; set; }
+        [field: SerializeField] public SoldierSettings SoldierSettings { get; private set; }
         [field: SerializeField] public GameObject CharacterModel { get; private set; }
         [field: SerializeField] public float MovementSpeed { get; private set; } = 3.0f;
-        [field: SerializeField] public Transform TargetTr { get; private set; }
+        [field: SerializeField] public SoldierHealthController HealthController { get; private set; }
         [field: SerializeField] public SoldierAnimator Animator { get; private set; }
         [field: SerializeField] public SkinnedMeshRenderer SkinnedMeshRendererHead { get; private set; }
         [field: SerializeField] public SkinnedMeshRenderer SkinnedMeshRendererBody { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
         [field: SerializeField] public Targeter Targeter { get; private set; }
 
-        public void OnObjectSpawn()
+        public void Initialize(SoldierSettings soldierSettings, OwnerTypes ownerType)
         {
-            Initialize();
-        }
+            SoldierSettings = soldierSettings;
+            MovementSpeed = SoldierSettings.MovementSpeed;
+            NavMeshAgent.speed = MovementSpeed;
 
-        private void Initialize()
-        {
+            SetOwnerType(ownerType);
+            ChangeMaterial(ownerType);
+
+            HealthController.Initialize(OwnerType, SoldierSettings.Health);
+
             SwitchState(new SoldierIdleState(this));
         }
 
@@ -39,7 +44,6 @@ namespace TownRush.Characters.Soldier.StateMachine
         public void SetOwnerType(OwnerTypes ownerType)
         {
             OwnerType = ownerType;
-            ChangeMaterial(ownerType);
         }
 
         public void ChangeMaterial(OwnerTypes ownerType)

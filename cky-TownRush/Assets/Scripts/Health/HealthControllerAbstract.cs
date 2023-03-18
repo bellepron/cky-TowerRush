@@ -7,39 +7,15 @@ namespace TownRush.Health
 {
     public abstract class HealthControllerAbstract : MonoBehaviour, ITarget, IDamageable
     {
-        #region Getting OwnerType
-
-        private IOwnable _iOwnable;
-        private IOwnable IOwnable
-        {
-            get
-            {
-                if (_iOwnable == null)
-                {
-                    if (TryGetComponent<IOwnable>(out var iOwnable))
-                    {
-                        _iOwnable = iOwnable;
-                    }
-                }
-
-                return _iOwnable;
-            }
-            set { _iOwnable = value; }
-        }
-
-        private OwnerTypes OwnerType
-        {
-            get
-            {
-                return IOwnable.OwnerType;
-            }
-        }
-
-        #endregion
-
-        [field: SerializeField] protected int Health { get; set; }
-
+        [field: SerializeField] public OwnerTypes OwnerType { get; set; }
+        [field: SerializeField] public int Health { get; set; }
         public Transform GetTransform() => transform;
+
+        public void Initialize(OwnerTypes ownerType, int health)
+        {
+            OwnerType = ownerType;
+            Health = health;
+        }
 
         public void GetDamage(OwnerTypes damageFrom, int damage)
         {

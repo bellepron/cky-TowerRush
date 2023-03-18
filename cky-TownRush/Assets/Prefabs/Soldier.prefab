@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 7954418126791853769}
   - component: {fileID: 1144464181}
   - component: {fileID: 1740878523799082695}
+  - component: {fileID: 1090947689178019995}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -1088,9 +1089,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: 
   <OwnerType>k__BackingField: 0
+  <SoldierSettings>k__BackingField: {fileID: 0}
   <CharacterModel>k__BackingField: {fileID: 7391925024118597354}
   <MovementSpeed>k__BackingField: 3
   <TargetTr>k__BackingField: {fileID: 0}
+  <HealthController>k__BackingField: {fileID: 2847744564695609123}
   <Animator>k__BackingField: {fileID: 7016161105464192419}
   <SkinnedMeshRendererHead>k__BackingField: {fileID: 5485968569971882398}
   <SkinnedMeshRendererBody>k__BackingField: {fileID: 3516497661763487820}
@@ -1134,6 +1137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b822fbf40e8bfd947975c3bbbe2b2a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <OwnerType>k__BackingField: 0
   <Health>k__BackingField: 1
 --- !u!114 &1144464183
 MonoBehaviour:
@@ -1205,6 +1209,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1090947689178019995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016161105464192422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b822fbf40e8bfd947975c3bbbe2b2a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <OwnerType>k__BackingField: 0
+  <Health>k__BackingField: 0
 --- !u!1 &7300631762781668785
 GameObject:
   m_ObjectHideFlags: 0
