@@ -37,7 +37,7 @@ namespace TownRush.Targeting
 
         #endregion
 
-        [field: SerializeField] public Target Target { get; private set; }
+        [field: SerializeField] public ITarget Target { get; private set; }
         [field: SerializeField] public LayerMask TargetLayerMask { get; private set; }
         [field: SerializeField] private float StartRadius { get; set; } = 1.0f;
         [field: SerializeField] private float MaxRadius { get; set; } = 25.0f;
@@ -58,8 +58,19 @@ namespace TownRush.Targeting
 
         private void CheckTargetPresence()
         {
-            if (Target.gameObject.activeInHierarchy == false)
+            if (Target.GetTransform().gameObject.activeInHierarchy == false)
                 Target = null;
+        }
+
+        private void OnEnable()
+        {
+            Target = null;
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            Target = null;
         }
 
         private void Find()
@@ -80,7 +91,7 @@ namespace TownRush.Targeting
 
                 foreach (Collider col in hitColliders)
                 {
-                    if (col.TryGetComponent<Target>(out var target))
+                    if (col.TryGetComponent<ITarget>(out var target))
                     {
                         if (col.TryGetComponent<IOwnable>(out var iOwnable))
                         {

@@ -21,9 +21,11 @@ namespace TownRush.Characters.Soldier.States
             if (stateMachine.Targeter.Target == null)
             {
                 stateMachine.SwitchState(new SoldierIdleState(stateMachine));
+
+                return;
             }
 
-            stateMachine.NavMeshAgent.destination = stateMachine.Targeter.Target.transform.position;
+            stateMachine.NavMeshAgent.destination = stateMachine.Targeter.Target.GetTransform().position;
         }
     }
 }

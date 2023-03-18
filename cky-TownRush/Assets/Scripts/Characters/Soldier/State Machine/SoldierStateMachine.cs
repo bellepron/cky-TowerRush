@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 namespace TownRush.Characters.Soldier.StateMachine
 {
-    public class SoldierStateMachine : BaseStateMachine, IOwnable
+    public class SoldierStateMachine : BaseStateMachine, IOwnable, IPooledObject
     {
         [field: SerializeField] public OwnerTypes OwnerType { get; set; }
         [field: SerializeField] public GameObject CharacterModel { get; private set; }
@@ -21,7 +21,12 @@ namespace TownRush.Characters.Soldier.StateMachine
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
         [field: SerializeField] public Targeter Targeter { get; private set; }
 
-        private void Start()
+        public void OnObjectSpawn()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             SwitchState(new SoldierIdleState(this));
         }

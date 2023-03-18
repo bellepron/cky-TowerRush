@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6262831482023217686}
   - component: {fileID: -4246878893203589945}
-  m_Layer: 0
+  - component: {fileID: 4665424418532509887}
+  - component: {fileID: 8759085533476533757}
+  m_Layer: 2
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +51,33 @@ MonoBehaviour:
   <ModelTr>k__BackingField: {fileID: 5863886208228802434}
   <MeshRenderer>k__BackingField: {fileID: 4696016002638791917}
   currentFloorTMP: {fileID: 0}
+--- !u!136 &4665424418532509887
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262831482023217681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5
+  m_Height: 60
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.88, z: 0}
+--- !u!114 &8759085533476533757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262831482023217681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4fa1aa59be850c4bb68451d54d9ff5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Health>k__BackingField: 0
 --- !u!1 &6497398886040757560
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +89,7 @@ GameObject:
   - component: {fileID: 5863886208228802434}
   - component: {fileID: 7408261843665629223}
   - component: {fileID: 4696016002638791917}
-  - component: {fileID: 8670022445180014940}
+  - component: {fileID: 119240162781241929}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -134,7 +163,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8670022445180014940
+--- !u!136 &119240162781241929
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +171,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6497398886040757560}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 5
   m_Height: 50
   m_Direction: 2
-  m_Center: {x: -1.2498936e-13, y: 0, z: -23.986582}
+  m_Center: {x: 0, y: 0, z: -23.986582}
