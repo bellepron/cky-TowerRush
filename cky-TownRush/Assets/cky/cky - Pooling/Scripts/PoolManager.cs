@@ -14,6 +14,8 @@ namespace CKY.Pooling
         }
 
         public List<Pool> pools;
+        public Dictionary<Transform, Transform> poolHolderDictionary = new Dictionary<Transform, Transform>();
+        public Dictionary<int, int> spawnedObjInstaneIdDictionary = new Dictionary<int, int>();
         public Dictionary<Transform, Queue<GameObject>> poolDictionary;
 
         protected override void OnFirstAwake() => Initialize();
@@ -22,15 +24,22 @@ namespace CKY.Pooling
         {
             poolDictionary = new Dictionary<Transform, Queue<GameObject>>();
 
-            foreach (Pool pool in pools)
+            for (int k = 0; k < pools.Count; k++)
             {
+                var poolHolderTr = new GameObject($"{pools[k].prefabTr.name}'s").transform;
+                poolHolderTr.parent = this.transform;
+                var pool = pools[k];
+                poolHolderDictionary.Add(pool.prefabTr, poolHolderTr);
+
                 Queue<GameObject> objectPool = new Queue<GameObject>();
 
                 for (int i = 0; i < pool.size; i++)
                 {
-                    GameObject obj = Instantiate(pool.prefabTr.gameObject, this.transform);
+                    GameObject obj = Instantiate(pool.prefabTr.gameObject, poolHolderTr);
                     obj.SetActive(false);
                     objectPool.Enqueue(obj);
+
+                    spawnedObjInstaneIdDictionary.Add(obj.GetInstanceID(), k);
                 }
 
                 poolDictionary.Add(pool.prefabTr, objectPool);
@@ -53,7 +62,7 @@ namespace CKY.Pooling
             }
             else
             {
-                objectToSpawn = Instantiate(prefabTr.gameObject, this.transform);
+                objectToSpawn = Instantiate(prefabTr.gameObject, poolHolderDictionary[prefabTr]);
             }
 
             objectToSpawn.SetActive(true);
@@ -73,8 +82,13 @@ namespace CKY.Pooling
         public void Despawn(GameObject pooledObj)
         {
             pooledObj.SetActive(false);
-            pooledObj.transform.parent = this.transform;
+
+            var a = spawnedObjInstaneIdDictionary[pooledObj.GetInstanceID()];
+            var b = pools[a];
+
+            pooledObj.transform.parent = poolHolderDictionary[b.prefabTr];
         }
+
         public void ResetPool()
         {
             foreach (Queue<GameObject> queue in poolDictionary.Values)
