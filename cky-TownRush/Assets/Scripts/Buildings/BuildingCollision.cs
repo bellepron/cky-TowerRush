@@ -2,9 +2,9 @@ using TownRush.Abstracts;
 using TownRush.Interfaces;
 using UnityEngine;
 
-namespace TownRush.Characters.Soldier
+namespace TownRush.Buildings
 {
-    public class SoldierCollision : CollisionAbstract
+    public class BuildingCollision : CollisionAbstract
     {
         private void OnCollisionEnter(Collision collision)
         {

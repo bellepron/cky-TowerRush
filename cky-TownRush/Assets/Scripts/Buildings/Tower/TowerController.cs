@@ -8,7 +8,7 @@ namespace TownRush.Buildings.Tower
     public class TowerController : BuildingAbstract
     {
         [field: SerializeField] public TowerHealthController HealthController { get; set; }
-        private TowerSettings TowerSettings { get; set; }
+        public TowerSettings TowerSettings { get; private set; }
         private TowerInfo TowerInfo { get; set; }
         private int CurrentFloor { get; set; }
 
@@ -26,12 +26,6 @@ namespace TownRush.Buildings.Tower
             HealthController.CapturedEvent += Captured;
 
             ChangeMaterial(TowerInfo.OwnerType);
-        }
-
-        private void OnDisable()
-        {
-            HealthController.UpdateHealthEvent -= Damaged;
-            HealthController.CapturedEvent -= Captured;
         }
 
         private void Damaged(int currentHealth)
