@@ -1,5 +1,6 @@
 using cky.Reuseables.Managers;
 using System;
+using TownRush.Interfaces;
 
 namespace TownRush.Managers
 {
@@ -9,6 +10,12 @@ namespace TownRush.Managers
 
         public static event Action UpdateTileColors;
 
+        public static event Action<ITarget> AddTarget;
+        public static event Action<ITarget> RemoveTarget;
+
         public void TriggerUpdateTileColors() => UpdateTileColors?.Invoke();
+
+        public void TriggerAddTarget(ITarget target) => AddTarget?.Invoke(target);
+        public void TriggerRemoveTarget(ITarget target) => RemoveTarget?.Invoke(target);
     }
 }

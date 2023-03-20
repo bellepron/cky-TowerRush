@@ -2,6 +2,7 @@ using CKY.Pooling;
 using System;
 using TownRush.Enums;
 using TownRush.Interfaces;
+using TownRush.Managers;
 using UnityEngine;
 
 namespace TownRush.Abstracts
@@ -12,17 +13,21 @@ namespace TownRush.Abstracts
 
         [field: SerializeField] public OwnerTypes OwnerType { get; set; }
         [field: SerializeField] public int Health { get; set; }
-        public Transform GetTransform() => transform;
+        public Vector3 GetPosition() => transform.position;
 
         public virtual void Initialize(OwnerTypes ownerType, int health)
         {
             OwnerType = ownerType;
             Health = health;
+
+            EventManager.Instance.TriggerAddTarget(this);
         }
 
         protected virtual void OnDisable()
         {
             UpdateHealthEvent = null;
+
+            EventManager.Instance.TriggerRemoveTarget(this);
         }
 
         public virtual void GetDamage(OwnerTypes damageFromWho, int damage)

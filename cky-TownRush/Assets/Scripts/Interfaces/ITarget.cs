@@ -6,6 +6,6 @@ namespace TownRush.Interfaces
     public interface ITarget
     {
         public OwnerTypes OwnerType { get; set; }
-        Transform GetTransform();
+        Vector3 GetPosition();
     }
 }

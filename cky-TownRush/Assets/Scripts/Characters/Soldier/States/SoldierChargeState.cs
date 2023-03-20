@@ -26,7 +26,7 @@ namespace TownRush.Characters.Soldier.States
                 return;
             }
 
-            var targetPos = stateMachine.Targeter.Target.GetTransform().position;
+            var targetPos = stateMachine.Targeter.Target.GetPosition();
             stateMachine.NavMeshAgent.transform.TurnToThis(targetPos, 10);
             stateMachine.NavMeshAgent.destination = targetPos;
         }
