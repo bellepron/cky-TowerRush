@@ -43,23 +43,19 @@ namespace TownRush.Targeting
         [field: SerializeField] private float StartRadius { get; set; } = 1.0f;
         [field: SerializeField] private float MaxRadius { get; set; } = 25.0f;
         [field: SerializeField] private float Radius { get; set; }
-        private bool _bIsSearching;
 
         private ITarget _target;
 
         private void OnEnable()
         {
             Target = null;
-            _bIsSearching = false;
-
             StartCoroutine(StartChecking());
         }
 
         private void OnDisable()
         {
-            StopAllCoroutines();
             Target = null;
-            _bIsSearching = false;
+            StopAllCoroutines();
         }
 
         IEnumerator StartChecking()
