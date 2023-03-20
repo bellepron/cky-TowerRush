@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PrefabTr>k__BackingField: {fileID: 7016161105464192420, guid: 3597683ed3258084aba000a250623082,
     type: 3}
-  <MovementSpeed>k__BackingField: 3
+  <MovementSpeed>k__BackingField: 1.43
   <Health>k__BackingField: 1
   <Damage>k__BackingField: 1
   <EmptySoldierMaterial>k__BackingField: {fileID: 2100000, guid: b325416e23b756c428ed746751784122,

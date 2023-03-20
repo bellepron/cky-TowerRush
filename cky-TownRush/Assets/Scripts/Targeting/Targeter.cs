@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TownRush.Enums;
 using TownRush.Interfaces;
@@ -44,28 +45,14 @@ namespace TownRush.Targeting
         [field: SerializeField] private float Radius { get; set; }
         private bool _bIsSearching;
 
-        private void Update()
-        {
-            if (Target == null)
-            {
-                Find();
-            }
-            else
-            {
-                CheckTargetPresence();
-            }
-        }
-
-        private void CheckTargetPresence()
-        {
-            if (Target.GetTransform().gameObject.activeInHierarchy == false)
-                Target = null;
-        }
+        private ITarget _target;
 
         private void OnEnable()
         {
             Target = null;
             _bIsSearching = false;
+
+            StartCoroutine(StartChecking());
         }
 
         private void OnDisable()
@@ -75,46 +62,60 @@ namespace TownRush.Targeting
             _bIsSearching = false;
         }
 
-        private void Find()
+        IEnumerator StartChecking()
         {
-            StartCoroutine(FindTargetObject());
+            while (true)
+            {
+                Updatee();
+
+                yield return new WaitForSeconds(0.08f);
+            }
         }
 
-        IEnumerator FindTargetObject()
+        private void Updatee()
         {
-            if (_bIsSearching == true) yield break;
-
-            _bIsSearching = true;
-
-            Radius = StartRadius;
-            while (Target == null)
+            if (Target == null)
             {
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, Radius/*, TargetLayerMask*/);
+                Target = Find();
+            }
+            else
+            {
+                _target = Find();
 
-                foreach (Collider col in hitColliders)
+                if (_target == null) return;
+
+                if (Target != _target)
                 {
-                    if (col.TryGetComponent<ITarget>(out var target))
-                    {
-                        if (col.TryGetComponent<IOwnable>(out var iOwnable))
-                        {
-                            if (OwnerType != iOwnable.OwnerType)
-                            {
-                                Target = target;
-                                _bIsSearching = false;
-
-                                yield break;
-                            }
-                        }
-                    }
-                }
-
-                yield return null;
-
-                if (Radius < MaxRadius)
-                {
-                    Radius += 1;
+                    Target = _target;
                 }
             }
+        }
+
+        private ITarget Find()
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, Radius);
+
+            foreach (Collider col in hitColliders)
+            {
+                if (col.TryGetComponent<ITarget>(out var target))
+                {
+                    if (OwnerType != target.OwnerType)
+                    {
+                        ResetRadius();
+
+                        return target;
+                    }
+                }
+            }
+
+            Radius++;
+
+            return null;
+        }
+
+        private void ResetRadius()
+        {
+            Radius = StartRadius;
         }
     }
 }

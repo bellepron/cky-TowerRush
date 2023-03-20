@@ -1092,7 +1092,6 @@ MonoBehaviour:
   <SoldierSettings>k__BackingField: {fileID: 0}
   <CharacterModel>k__BackingField: {fileID: 7391925024118597354}
   <MovementSpeed>k__BackingField: 3
-  <TargetTr>k__BackingField: {fileID: 0}
   <HealthController>k__BackingField: {fileID: 2847744564695609123}
   <Animator>k__BackingField: {fileID: 7016161105464192419}
   <SkinnedMeshRendererHead>k__BackingField: {fileID: 5485968569971882398}
@@ -1198,9 +1197,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.23
   m_Speed: 3.5
-  m_Acceleration: 500
+  m_Acceleration: 100000000
   avoidancePriority: 50
-  m_AngularSpeed: 500
+  m_AngularSpeed: 1e+10
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
