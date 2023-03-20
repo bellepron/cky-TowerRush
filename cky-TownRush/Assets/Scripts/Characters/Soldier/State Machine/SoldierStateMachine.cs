@@ -36,6 +36,8 @@ namespace TownRush.Characters.Soldier.StateMachine
             SwitchState(new SoldierIdleState(this));
         }
 
+        public Vector3 GetPosition() => transform.position;
+
         protected override void Tick()
         {
             base.Tick();

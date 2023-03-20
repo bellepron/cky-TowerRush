@@ -6,7 +6,7 @@ namespace TownRush.Interfaces
     {
         public OwnerTypes OwnerType { get; set; }
         public int Health { get; set; }
-        void GetDamage(OwnerTypes damageFrom, int damage);
+        void GetDamage(OwnerTypes damageFromWho, int damage);
         void Death();
     }
 }

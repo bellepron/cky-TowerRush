@@ -11,6 +11,8 @@ namespace TownRush.Buildings
         [field: SerializeField] public Transform ModelTr { get; private set; }
         [field: SerializeField] public MeshRenderer MeshRenderer { get; private set; }
 
+        public Vector3 GetPosition() => transform.position;
+
         public abstract void Initialize(TowerSettings towerSettings, TowerInfo towerInfo);
 
         public abstract void ChangeMaterial(OwnerTypes ownerType);

@@ -22,7 +22,7 @@ namespace TownRush.Board
             SetOwnerType(OwnerTypes.EMPTY);
         }
 
-        Vector3 ITile.GetPosition() => transform.position;
+        public Vector3 GetPosition() => transform.position;
 
         public void ChangeMaterial(OwnerTypes ownerTypes)
         {

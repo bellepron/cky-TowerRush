@@ -1,3 +1,4 @@
+using System.Linq;
 using TownRush.Board;
 using TownRush.Buildings;
 using TownRush.Interfaces;
@@ -10,12 +11,12 @@ namespace TownRush.Managers
         public static BoardManager Instance;
 
         ITile[,] _tiles;
-        BuildingAbstract[] buildings;
+        IOwnable[] buildings;
 
         public BoardManager(ITile[,] tiles)
         {
             _tiles = tiles;
-            buildings = MonoBehaviour.FindObjectsOfType<BuildingAbstract>();
+            buildings = MonoBehaviour.FindObjectsOfType<BuildingAbstract>().OfType<IOwnable>().ToArray();
 
             SetTileColors();
 
@@ -30,11 +31,11 @@ namespace TownRush.Managers
                 {
                     var tile = _tiles[i, j];
                     var minDist = Mathf.Infinity;
-                    BuildingAbstract closestBuilding = null;
+                    IOwnable closestBuilding = null;
 
                     foreach (var building in buildings)
                     {
-                        var dist = Vector3.Distance(tile.GetPosition(), building.transform.position);
+                        var dist = Vector3.Distance(tile.GetPosition(), building.GetPosition());
 
                         if (dist < minDist)
                         {
@@ -43,21 +44,14 @@ namespace TownRush.Managers
                         }
                     }
 
-                    if (closestBuilding.TryGetComponent<IOwnable>(out var closestBuildingiOwnable))
+                    var tileAbstract = (TileAbstract)tile;
+                    if (tileAbstract.TryGetComponent<IOwnable>(out var tileIOwnable))
                     {
-                        var tileAbstract = (TileAbstract)tile;
-                        if (tileAbstract.TryGetComponent<IOwnable>(out var tileIOwnable))
-                        {
-                            tileIOwnable.SetOwnerType(closestBuildingiOwnable.OwnerType);
-                        }
-                        else
-                        {
-                            Debug.Log("TileAbstract.cs is not inherited IOwnable");
-                        }
+                        tileIOwnable.SetOwnerType(closestBuilding.OwnerType);
                     }
                     else
                     {
-                        Debug.Log("BuildingAbstract.cs is not inherited IOwnable");
+                        Debug.Log("TileAbstract.cs is not inherited IOwnable");
                     }
                 }
             }

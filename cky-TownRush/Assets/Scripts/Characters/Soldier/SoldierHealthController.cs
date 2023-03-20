@@ -1,4 +1,4 @@
-using TownRush.Health;
+using TownRush.Abstracts;
 
 namespace TownRush.Characters.Soldier
 {

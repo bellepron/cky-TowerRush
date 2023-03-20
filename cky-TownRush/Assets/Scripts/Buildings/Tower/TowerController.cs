@@ -5,8 +5,9 @@ using TMPro;
 
 namespace TownRush.Buildings.Tower
 {
-    public class Tower : BuildingAbstract
+    public class TowerController : BuildingAbstract
     {
+        [field: SerializeField] public TowerHealthController HealthController { get; set; }
         private TowerSettings TowerSettings { get; set; }
         private TowerInfo TowerInfo { get; set; }
         private int CurrentFloor { get; set; }
@@ -19,16 +20,36 @@ namespace TownRush.Buildings.Tower
             TowerInfo = towerInfo;
             OwnerType = towerInfo.OwnerType;
             SetFloor(TowerInfo.StartFloor);
+            SetHealth();
+
+            HealthController.UpdateHealthEvent += Damaged;
+            HealthController.CapturedEvent += Captured;
 
             ChangeMaterial(TowerInfo.OwnerType);
+        }
+
+        private void OnDisable()
+        {
+            HealthController.UpdateHealthEvent -= Damaged;
+            HealthController.CapturedEvent -= Captured;
+        }
+
+        private void Damaged(int currentHealth)
+        {
+            SetFloor(currentHealth);
+        }
+
+        private void Captured(OwnerTypes damageFromWho, int capturedHealth)
+        {
+            SetFloor(capturedHealth);
+            SetOwnerType(damageFromWho);
+            ChangeMaterial(damageFromWho);
         }
 
         public override void SetOwnerType(OwnerTypes ownerType)
         {
             TowerInfo.SetTowerType(ownerType);
             OwnerType = ownerType;
-
-            ChangeMaterial(ownerType);
         }
 
         public override void ChangeMaterial(OwnerTypes ownerType)
@@ -41,6 +62,12 @@ namespace TownRush.Buildings.Tower
             CurrentFloor = currentFloor;
             ModelTr.localPosition = new Vector3(0, CurrentFloor, 0);
             //currentFloorTMP.text = $"{_currentFloor}";
+        }
+
+        private void SetHealth()
+        {
+            HealthController = HealthController == null ? GetComponent<TowerHealthController>() : HealthController;
+            HealthController.Initialize(OwnerType, CurrentFloor);
         }
     }
 }
