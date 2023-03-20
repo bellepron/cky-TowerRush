@@ -1,3 +1,4 @@
+using cky.Reuseables.Extension;
 using TownRush.Characters.Soldier.StateMachine;
 
 namespace TownRush.Characters.Soldier.States
@@ -25,7 +26,9 @@ namespace TownRush.Characters.Soldier.States
                 return;
             }
 
-            stateMachine.NavMeshAgent.destination = stateMachine.Targeter.Target.GetTransform().position;
+            var targetPos = stateMachine.Targeter.Target.GetTransform().position;
+            stateMachine.NavMeshAgent.transform.TurnToThis(targetPos, 10);
+            stateMachine.NavMeshAgent.destination = targetPos;
         }
     }
 }
