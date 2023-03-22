@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using TownRush.Enums;
 
 namespace TownRush.Buildings
 {
@@ -10,10 +11,10 @@ namespace TownRush.Buildings
         [SerializeField] protected TextMeshProUGUI textTmp;
         [SerializeField] protected Image costIcon;
 
-        private void Start() => canvas.transform.rotation = Camera.main.transform.rotation;
+        private void Awake() => canvas.transform.rotation = Camera.main.transform.rotation;
 
-        public abstract void Initialize(int level);
+        public abstract void Initialize(OwnerTypes ownerType, int level);
 
-        protected abstract void UpdateText(int level);
+        protected abstract void UpdateText();
     }
 }

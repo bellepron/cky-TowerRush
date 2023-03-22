@@ -25,7 +25,7 @@ MonoBehaviour:
     <StartFloor>k__BackingField: 25
   - <OwnerType>k__BackingField: 1
     <InitPos>k__BackingField: {x: 3, y: 0, z: -5}
-    <StartFloor>k__BackingField: 15
+    <StartFloor>k__BackingField: 10
   - <OwnerType>k__BackingField: 2
     <InitPos>k__BackingField: {x: -3, y: 0, z: 5}
     <StartFloor>k__BackingField: 15

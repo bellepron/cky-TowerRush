@@ -22,12 +22,12 @@ MonoBehaviour:
   <TowersWillCreate>k__BackingField:
   - <OwnerType>k__BackingField: 0
     <InitPos>k__BackingField: {x: 0, y: 0, z: 0}
-    <StartFloor>k__BackingField: 5
+    <StartFloor>k__BackingField: 0
   - <OwnerType>k__BackingField: 1
     <InitPos>k__BackingField: {x: 3, y: 0, z: -5}
-    <StartFloor>k__BackingField: 15
+    <StartFloor>k__BackingField: 0
   - <OwnerType>k__BackingField: 2
     <InitPos>k__BackingField: {x: -3, y: 0, z: 5}
-    <StartFloor>k__BackingField: 15
+    <StartFloor>k__BackingField: 1
   <SoldierSettings>k__BackingField: {fileID: 11400000, guid: c7682b568c8e1aa4db3c0198bf707b6a,
     type: 2}

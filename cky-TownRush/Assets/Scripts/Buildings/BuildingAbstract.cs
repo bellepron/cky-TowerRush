@@ -3,6 +3,7 @@ using TownRush.Buildings.Tower;
 using TownRush.Enums;
 using TownRush.Interfaces;
 using UnityEngine;
+using System;
 
 namespace TownRush.Buildings
 {
@@ -12,7 +13,6 @@ namespace TownRush.Buildings
         [field: SerializeField] public Transform ModelTr { get; private set; }
         [field: SerializeField] public MeshRenderer MeshRenderer { get; private set; }
         [field: SerializeField] public List<IOwnable> OwnedTiles { get; set; } = new List<IOwnable>();
-
 
         public Vector3 GetPosition() => transform.position;
 

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PrefabTr>k__BackingField: {fileID: 6262831482023217686, guid: 9d67ed8179aa56b49ab6689f0f0ebfd9,
     type: 3}
+  <UpgradeLevelCosts>k__BackingField: 000000000a000000140000001e00000032000000
+  <LevelBaseFloors>k__BackingField: 000000000a000000140000001e00000032000000
+  <LevelIncomes>k__BackingField: 000000000a0000001e0000004600000064000000
   <EmptyTowerMaterials>k__BackingField:
   - {fileID: 2100000, guid: 06f169136b6c34d4388524da1d2e6257, type: 2}
   - {fileID: 2100000, guid: 425e28220b7d32d4db6f608e370d68c9, type: 2}
