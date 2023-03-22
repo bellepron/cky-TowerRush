@@ -43,12 +43,11 @@ namespace TownRush.Board
         public void Animation()
         {
             var tr = transform;
-            var y = tr.position.y;
             var seq = DOTween.Sequence();
-            seq.Append(tr.DOMoveY(y + 1, 0.15f));
-            seq.Join(tr.DOScale(Vector3.one * 0.9f, 0.15f));
-            seq.Append(tr.DOMoveY(y, 0.1f));
-            seq.Join(tr.DOScale(Vector3.one, 0.15f));
+            seq.Append(tr.DOMoveY(1, 0.25f));
+            seq.Join(tr.DOScale(Vector3.one * 0.9f, 0.25f));
+            seq.Append(tr.DOMoveY(0, 0.2f));
+            seq.Join(tr.DOScale(Vector3.one, 0.2f));
         }
 
         private void SetLayer(OwnerTypes ownerType)
