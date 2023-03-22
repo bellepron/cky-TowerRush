@@ -2,6 +2,7 @@ using TownRush.Enums;
 using TownRush.Helpers;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 namespace TownRush.Buildings.Tower
 {
@@ -20,12 +21,19 @@ namespace TownRush.Buildings.Tower
             TowerInfo = towerInfo;
             OwnerType = towerInfo.OwnerType;
             SetFloor(TowerInfo.StartFloor);
-            SetHealth();
+            SetHealthControllerHealth();
 
             HealthController.UpdateHealthEvent += Damaged;
-            HealthController.CapturedEvent += Captured;
+            HealthController.CapturedEvent += SetOwner;
 
-            ChangeMaterial(TowerInfo.OwnerType);
+            ChangeMaterial(OwnerType);
+            StartCoroutine(InitEndOfFrame());
+        }
+
+        IEnumerator InitEndOfFrame()
+        {
+            yield return new WaitForEndOfFrame();
+            SetTileColors(OwnerType);
         }
 
         private void Damaged(int currentHealth)
@@ -33,11 +41,21 @@ namespace TownRush.Buildings.Tower
             SetFloor(currentHealth);
         }
 
-        private void Captured(OwnerTypes damageFromWho, int capturedHealth)
+        private void SetOwner(OwnerTypes damageFromWho, int capturedHealth)
         {
+            SetTileColors(damageFromWho);
+
             SetFloor(capturedHealth);
             SetOwnerType(damageFromWho);
             ChangeMaterial(damageFromWho);
+        }
+
+        private void SetTileColors(OwnerTypes conqueredByWho)
+        {
+            foreach (var item in OwnedTiles)
+            {
+                item.SetOwnerType(conqueredByWho);
+            }
         }
 
         public override void SetOwnerType(OwnerTypes ownerType)
@@ -58,7 +76,7 @@ namespace TownRush.Buildings.Tower
             //currentFloorTMP.text = $"{_currentFloor}";
         }
 
-        private void SetHealth()
+        private void SetHealthControllerHealth()
         {
             HealthController = HealthController == null ? GetComponent<TowerHealthController>() : HealthController;
             HealthController.Initialize(OwnerType, CurrentFloor);

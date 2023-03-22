@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TownRush.Buildings.Tower;
 using TownRush.Enums;
 using TownRush.Interfaces;
@@ -10,6 +11,8 @@ namespace TownRush.Buildings
         [field: SerializeField] public OwnerTypes OwnerType { get; set; }
         [field: SerializeField] public Transform ModelTr { get; private set; }
         [field: SerializeField] public MeshRenderer MeshRenderer { get; private set; }
+        [field: SerializeField] public List<IOwnable> OwnedTiles { get; set; } = new List<IOwnable>();
+
 
         public Vector3 GetPosition() => transform.position;
 

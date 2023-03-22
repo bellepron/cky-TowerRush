@@ -1,7 +1,9 @@
+using cky.Reuseables.Managers;
 using System;
 using System.Collections;
 using TownRush.Abstracts;
 using TownRush.Enums;
+using TownRush.Managers;
 using UnityEngine;
 
 namespace TownRush.Buildings.Tower
@@ -69,11 +71,17 @@ namespace TownRush.Buildings.Tower
 
             TriggerCapturedEvent(damageFromWho, Health);
             TriggerUpdateHealthEvent();
+            TriggerUpdateTileColors();
         }
 
         private void TriggerCapturedEvent(OwnerTypes damageFromWho, int capturedHealth)
         {
             CapturedEvent?.Invoke(damageFromWho, capturedHealth);
+        }
+
+        private void TriggerUpdateTileColors()
+        {
+            EventManager.Instance.TriggerUpdateTileColors();
         }
     }
 }

@@ -11,31 +11,52 @@ namespace TownRush.Managers
         public static BoardManager Instance;
 
         ITile[,] _tiles;
-        IOwnable[] buildings;
+        BuildingAbstract[] _buildingAbstracts;
+        IOwnable[,] _tileIOwnables;
+        int _buildingCount;
+        int _width;
+        int _height;
 
         public BoardManager(ITile[,] tiles)
         {
             _tiles = tiles;
-            buildings = MonoBehaviour.FindObjectsOfType<BuildingAbstract>().OfType<IOwnable>().ToArray();
+            _width = _tiles.GetLength(0);
+            _height = _tiles.GetLength(1);
+            _buildingAbstracts = MonoBehaviour.FindObjectsOfType<BuildingAbstract>();
+            _buildingCount = _buildingAbstracts.Length;
 
-            SetTileColors();
+            _tileIOwnables = new IOwnable[_width, _height];
+            for (int j = 0; j < _height; j++)
+            {
+                for (int i = 0; i < _width; i++)
+                {
+                    if (((TileAbstract)_tiles[i, j]).TryGetComponent<IOwnable>(out var iOwnable))
+                    {
+                        _tileIOwnables[i, j] = iOwnable;
+                    }
+                    else
+                    {
+                        Debug.Log("TileAbstract.cs is not inherited IOwnable");
+                    }
+                }
+            }
 
-            EventManager.UpdateTileColors += SetTileColors;
+            AssignTilesToClosestBuilding();
         }
 
-        public void SetTileColors()
+        private void AssignTilesToClosestBuilding()
         {
-            for (int j = 0; j < _tiles.GetLength(1); j++)
+            for (int j = 0; j < _height; j++)
             {
-                for (int i = 0; i < _tiles.GetLength(0); i++)
+                for (int i = 0; i < _width; i++)
                 {
-                    var tile = _tiles[i, j];
                     var minDist = Mathf.Infinity;
-                    IOwnable closestBuilding = null;
+                    BuildingAbstract closestBuilding = null;
 
-                    foreach (var building in buildings)
+                    for (int k = 0; k < _buildingCount; k++)
                     {
-                        var dist = Vector3.Distance(tile.GetPosition(), building.GetPosition());
+                        var building = _buildingAbstracts[k];
+                        var dist = Vector3.Distance(_tiles[i, j].GetPosition(), building.GetPosition());
 
                         if (dist < minDist)
                         {
@@ -44,15 +65,7 @@ namespace TownRush.Managers
                         }
                     }
 
-                    var tileAbstract = (TileAbstract)tile;
-                    if (tileAbstract.TryGetComponent<IOwnable>(out var tileIOwnable))
-                    {
-                        tileIOwnable.SetOwnerType(closestBuilding.OwnerType);
-                    }
-                    else
-                    {
-                        Debug.Log("TileAbstract.cs is not inherited IOwnable");
-                    }
+                    closestBuilding.OwnedTiles.Add(_tileIOwnables[i, j]);
                 }
             }
         }

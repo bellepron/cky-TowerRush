@@ -60,8 +60,6 @@ namespace TownRush.Managers
             {
                 EventManager.Instance.TriggerUpdateTileColors();
             }
-
-            EventManager.Instance.TriggerUpdateTileColors();
         }
         #endregion
     }
