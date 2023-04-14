@@ -617,7 +617,7 @@ MonoBehaviour:
   <HealthController>k__BackingField: {fileID: 5891264557985562470}
   <Animator>k__BackingField: {fileID: 1664827915561483750}
   <SkinnedMeshRendererHead>k__BackingField: {fileID: 9018117975329376185}
-  <SkinnedMeshRendererBody>k__BackingField: {fileID: 3300871311051651994}
+  <SkinnedMeshRendererBody>k__BackingField: {fileID: 2429578044907401084}
   <NavMeshAgent>k__BackingField: {fileID: 7956759630666679938}
   <Targeter>k__BackingField: {fileID: 8522149087194116978}
 --- !u!114 &1664827915561483750

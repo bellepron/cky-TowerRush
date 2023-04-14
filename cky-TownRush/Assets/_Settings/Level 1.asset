@@ -35,5 +35,5 @@ MonoBehaviour:
   - <OwnerType>k__BackingField: 4
     <InitPos>k__BackingField: {x: -2, y: 0, z: -2}
     <StartFloor>k__BackingField: 15
-  <SoldierSettings>k__BackingField: {fileID: 11400000, guid: c7682b568c8e1aa4db3c0198bf707b6a,
+  <SoldierSettings>k__BackingField: {fileID: 11400000, guid: f69767b69a63d2f479c7f31407a464ed,
     type: 2}

@@ -1695,7 +1695,7 @@ MonoBehaviour:
   <MovementSpeed>k__BackingField: 3
   <HealthController>k__BackingField: {fileID: 1189636562373287916}
   <Animator>k__BackingField: {fileID: 6222041654861389164}
-  <SkinnedMeshRendererHead>k__BackingField: {fileID: 8486926074850467817}
+  <SkinnedMeshRendererHead>k__BackingField: {fileID: 8036773461592218121}
   <SkinnedMeshRendererBody>k__BackingField: {fileID: 8486926074850467817}
   <NavMeshAgent>k__BackingField: {fileID: 3400111591189784072}
   <Targeter>k__BackingField: {fileID: 3965217922936181752}
