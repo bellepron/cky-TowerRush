@@ -1,8 +1,6 @@
 using cky.Reuseables.Level;
-using CKY.Pooling;
+using EZ_Pooling;
 using TownRush.Buildings.Tower;
-using TownRush.Interfaces;
-using TownRush.Managers;
 using UnityEngine;
 
 namespace TownRush.Buildings
@@ -27,7 +25,7 @@ namespace TownRush.Buildings
 
         public void CreateTower(TowerInfo towerInfo)
         {
-            var towerTr = PoolManager.Instance.Spawn(TowerPrefabTr, towerInfo.InitPos, Quaternion.identity);
+            var towerTr = EZ_PoolManager.Spawn(TowerPrefabTr, towerInfo.InitPos, Quaternion.identity);
 
             if (towerTr.TryGetComponent<BuildingAbstract>(out var buildingAbstract))
             {

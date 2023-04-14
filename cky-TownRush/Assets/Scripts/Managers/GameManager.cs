@@ -1,7 +1,5 @@
 using cky.Reuseables.Helpers;
 using cky.Reuseables.Managers;
-using CKY.Pooling;
-using System;
 using System.Collections;
 using TownRush.Board;
 using TownRush.Buildings;
@@ -12,8 +10,6 @@ namespace TownRush.Managers
 {
     public class GameManager : GameManagerAbstract
     {
-        [field: SerializeField] public PoolManager PoolManager { get; private set; }
-
         [field: SerializeField] public EventManager EventManager { get; private set; }
         [field: SerializeField] public BoardCreator BoardCreator { get; private set; }
         [field: SerializeField] public BuildingSpawner BuildingSpawner { get; private set; }
@@ -43,8 +39,6 @@ namespace TownRush.Managers
 
         private void LoadNewScene()
         {
-            PoolManager.ResetPool();
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

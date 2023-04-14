@@ -9,7 +9,7 @@ namespace TownRush.Characters.Soldier.States
 
         public override void Enter()
         {
-            stateMachine.Animator.Walk();
+            stateMachine.Animator.Run();
         }
 
         public override void Exit()

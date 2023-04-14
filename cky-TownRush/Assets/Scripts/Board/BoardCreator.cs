@@ -1,5 +1,5 @@
 using cky.Reuseables.Level;
-using CKY.Pooling;
+using EZ_Pooling;
 using TownRush.Managers;
 using UnityEngine;
 
@@ -48,7 +48,7 @@ namespace TownRush.Board
                 {
                     Vector3 pos = _startPos + new Vector3(secondRowOffsetX + i * _tileX + i * Gap, 0, j * _tileZ * 0.75f + j * Gap);
 
-                    var tileTr = PoolManager.Instance.Spawn(HexagonTilePrefabTr, pos, Quaternion.Euler(-90, 0, 0));
+                    var tileTr = EZ_PoolManager.Spawn(HexagonTilePrefabTr, pos, Quaternion.Euler(-90, 0, 0));
 
                     if (tileTr.TryGetComponent<ITile>(out var tile))
                     {

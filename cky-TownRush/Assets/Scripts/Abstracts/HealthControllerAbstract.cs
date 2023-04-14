@@ -1,4 +1,4 @@
-using CKY.Pooling;
+using EZ_Pooling;
 using System;
 using TownRush.Enums;
 using TownRush.Interfaces;
@@ -50,7 +50,7 @@ namespace TownRush.Abstracts
 
         public virtual void Death()
         {
-            PoolManager.Instance.Despawn(gameObject);
+            EZ_PoolManager.Despawn(transform);
         }
 
         protected virtual void TriggerUpdateHealthEvent()
